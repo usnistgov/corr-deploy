@@ -1,0 +1,23 @@
+- name: scalling db container
+  shell: docker-compose scale corrdb={{hostvars['dbhost']['scale']}}
+  when: inventory_hostname in groups['db']
+  become: true
+  register: output
+
+- name: scalling api container
+  shell: docker-compose scale corrapi={{hostvars['apihost']['scale']}}
+  when: inventory_hostname in groups['api']
+  become: true
+  register: output
+
+- name: scalling cloud container
+  shell: docker-compose scale corrcloud={{hostvars['cloudhost']['scale']}}
+  when: inventory_hostname in groups['cloud']
+  become: true
+  register: output
+
+- name: scalling frontend container
+  shell: docker-compose scale corrview={{hostvars['frontendhost']['scale']}}
+  when: inventory_hostname in groups['frontend']
+  become: true
+  register: output

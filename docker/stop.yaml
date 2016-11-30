@@ -1,0 +1,23 @@
+- name: shuting down db container
+  when: inventory_hostname in groups['db']
+  shell: docker-compose stop corrdb
+  become: true
+  register: output
+
+- name: shuting down api container
+  when: inventory_hostname in groups['api']
+  shell: docker-compose stop corrapi
+  become: true
+  register: output
+
+- name: shuting down cloud container
+  when: inventory_hostname in groups['cloud']
+  shell: docker-compose stop corrcloud
+  become: true
+  register: output
+
+- name: shuting down frontend container
+  when: inventory_hostname in groups['frontend']
+  shell: docker-compose stop corrview
+  become: true
+  register: output

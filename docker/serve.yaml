@@ -1,0 +1,26 @@
+- name: launch the db container
+  when: inventory_hostname in groups['db']
+  shell: docker-compose up -d corrdb
+  become: true
+
+- name: wait for mongodb to become available
+  when: >
+    inventory_hostname in groups['api'] or
+    inventory_hostname in groups['cloud']
+  wait_for:
+    port: 27017
+
+- name: launch the api container
+  when: inventory_hostname in groups['api']
+  shell: docker-compose up -d corrapi
+  become: true
+
+- name: launch the cloud container
+  when: inventory_hostname in groups['cloud']
+  shell: docker-compose up -d corrcloud
+  become: true
+
+- name: launch the frontend container
+  when: inventory_hostname in groups['frontend']
+  shell: docker-compose up -d corrview
+  become: true

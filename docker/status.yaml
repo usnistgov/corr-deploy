@@ -1,0 +1,15 @@
+- name: check that db is up and running
+  when: inventory_hostname in groups['db']
+  wait_for: port=27017 timeout=20
+
+- name: check that api is up and running
+  uri: url={{hostvars['apihost']['test_path']}}
+  when: inventory_hostname in groups['api']
+
+- name: check that cloud is up and running
+  uri: url={{hostvars['cloudhost']['test_path']}}
+  when: inventory_hostname in groups['cloud']
+
+- name: check that frontend is up and running
+  uri: url={{hostvars['frontendhost']['test_path']}}
+  when: inventory_hostname in groups['frontend']

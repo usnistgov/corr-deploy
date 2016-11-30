@@ -1,0 +1,64 @@
+version: '2'
+services:
+  corrdb:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-db
+    ports:
+     - "27017:27017"
+    expose:
+     - "27017"
+    volumes:
+     - /data/db:/data/db
+    networks:
+      db_net:
+        ipv4_address: 0.0.0.0
+  corrapi:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-api
+    ports:
+     - "5100:5100"
+    volumes:
+     - /home/fyc/corr-storage:/home/corradmin/corr-storage
+    depends_on:
+     - "corrdb"
+    networks:
+      api_net:
+        ipv4_address: 0.0.0.0
+  corrcloud:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-cloud
+    ports:
+     - "5200:5200"
+    volumes:
+     - /home/fyc/corr-storage:/home/corradmin/corr-storage
+    expose:
+     - "5200"
+    depends_on:
+     - "corrdb"
+    networks:
+      cloud_net:
+        ipv4_address: 0.0.0.0
+  corrview:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-frontend
+    ports:
+     - "5000:5000"
+    depends_on:
+     - "corrcloud"
+    networks:
+      view_net:
+        ipv4_address: 129.6.196.43
+
+networks:
+  db_net:
+     driver: bridge
+  api_net:
+     driver: bridge
+  cloud_net:
+     driver: bridge
+  view_net:
+     driver: bridge
