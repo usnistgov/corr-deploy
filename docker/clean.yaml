@@ -90,9 +90,9 @@
   when: build_folder.stat.exists == False
 
 - name: setup logos storage folder
-  shell: mv assets/default-logo.png builds/corr-storage/corr-logos
+  shell: cp assets/default-logo.png builds/corr-storage/corr-logos
   when: build_folder.stat.exists == False
 
 - name: setup pictures storage folder
-  shell: mv assets/default-picture.png builds/corr-storage/corr-pictures
+  shell: cp assets/default-picture.png builds/corr-storage/corr-pictures
   when: build_folder.stat.exists == False
