@@ -79,7 +79,7 @@ parameter:
 	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file hosts.local
 	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file hosts.local
 
-For remote production deployment and installation, a modified version of the [hosts.local](hosts.local) file
+For remote production deployment and installation, a modified version of the [hosts.local](builds/hosts.local) file
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
 Also the ssh key and user should be updated.
 
