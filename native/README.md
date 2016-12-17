@@ -18,7 +18,7 @@ In this setup, the scripts will expected the environment corr-local. To create t
 
 The installation requires sudo priviledges as following:
 
-    $ sudo ./config.bash --ask-sudo --tags install --inventory-file hosts.local
+    $ sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.local
 
 The hosts.local file contains the general configuration variables.
 Before running the installation script, you should update variables in this file.
@@ -30,10 +30,10 @@ We recommand moving it to the root path to have /corr-storage on the api and clo
 components' instance.
 The installation setup also allows specific components installations:
 
-	$ sudo ./config.bash --ask-sudo --tags install --limit db --inventory-file hosts.local
-	$ sudo ./config.bash --ask-sudo --tags install --limit api --inventory-file hosts.local
-	$ sudo ./config.bash --ask-sudo --tags install --limit cloud --inventory-file hosts.local
-	$ sudo ./config.bash --ask-sudo --tags install --limit frontend --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags install --limit db --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags install --limit api --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags install --limit cloud --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags install --limit frontend --inventory-file builds/hosts.local
 
 # Deployment
 In case of the platform deployed with the file system as a storage medium, There is a requirement that
@@ -63,21 +63,21 @@ Run the frontend component:
 	$ cd ../corr-view/frontend
 	$ jekyll serve --watch --port 5000 --host 0.0.0.0
 
-The current [hosts.local](hosts.local) file contains the development configuration for the platform to
+The current [hosts.local](builds/hosts.local) file contains the development configuration for the platform to
 be installed and deployed locally.
 
 ## Production
 The platform can be deployed through the following command:
 
-	$ sudo ./config.bash --ask-sudo --tags serve --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --inventory-file builds/hosts.local
 
 There is also the possibility to deploy each component separately by using the --limit
 parameter:
 
-	$ sudo ./config.bash --ask-sudo --tags serve --limit db --inventory-file hosts.local
-	$ sudo ./aconfig.bash --ask-sudo --tags serve --limit api --inventory-file hosts.local
-	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file hosts.local
-	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit db --inventory-file builds/hosts.local
+	$ sudo ./aconfig.bash --ask-sudo --tags serve --limit api --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file builds/hosts.local
 
 For remote production deployment and installation, a modified version of the [hosts.local](builds/hosts.local) file
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
