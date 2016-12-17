@@ -42,49 +42,49 @@ component have to access the storage. Running them separately will result on inc
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
 as sftp will be prefered over the current capability.
 
-    ## Development
-    For development in native mode, you may follow the steps below.
-    Start the dabatase:
+## Development
+For development in native mode, you may follow the steps below.
+Start the dabatase:
 
     	$ sudo service mongodb start
 
-    Run the api component:
+Run the api component:
 
     	$ cd corr-api
-		$ python run.py
+	$ python run.py
 
-	Run the cloud component:
+Run the cloud component:
 
-		$ cd ../corr-cloud
-		$ python run.py
+	$ cd ../corr-cloud
+	$ python run.py
 
-	Run the frontend component:
+Run the frontend component:
 
-		$ cd ../corr-view/frontend
-		$ jekyll serve --watch --port 5000 --host 0.0.0.0
+	$ cd ../corr-view/frontend
+	$ jekyll serve --watch --port 5000 --host 0.0.0.0
 
-    The current [hosts.local](hosts.local) file contains the development configuration for the platform to
-    be installed and deployed locally.
+The current [hosts.local](hosts.local) file contains the development configuration for the platform to
+be installed and deployed locally.
 
-    ## Production
-    The platform can be deployed through the following command:
+## Production
+The platform can be deployed through the following command:
 
-		$ sudo ./config.bash --ask-sudo --tags serve --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --inventory-file hosts.local
 
-	There is also the possibility to deploy each component separately by using the --limit
-	parameter:
+There is also the possibility to deploy each component separately by using the --limit
+parameter:
 
-		$ sudo ./config.bash --ask-sudo --tags serve --limit db --inventory-file hosts.local
-		$ sudo ./aconfig.bash --ask-sudo --tags serve --limit api --inventory-file hosts.local
-		$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file hosts.local
-		$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit db --inventory-file hosts.local
+	$ sudo ./aconfig.bash --ask-sudo --tags serve --limit api --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file hosts.local
 
-    For remote production deployment and installation, a modified version of the [hosts.local](hosts.local) file
-    has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
-    Also the ssh key and user should be updated.
+For remote production deployment and installation, a modified version of the [hosts.local](hosts.local) file
+has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
+Also the ssh key and user should be updated.
 
-    ## Debugging
-    In the case of development, you will be able to have direct logs from the components executions. For 
-    the production version on the other end, all component are system services. As such they all produce
-    logs stored in /var/log. You will find: mongodb, corrapi, corrcloud. corrfrontend does not currently
-    persist logs.
+## Debugging
+In the case of development, you will be able to have direct logs from the components executions. For 
+the production version on the other end, all component are system services. As such they all produce
+logs stored in /var/log. You will find: mongodb, corrapi, corrcloud. corrfrontend does not currently
+persist logs.
