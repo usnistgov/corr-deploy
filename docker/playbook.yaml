@@ -3,7 +3,7 @@
   connection: local
   gather_facts: no
   vars:
-    local_path: "/home/{{ ansible_ssh_user }}"
+    local_path: "/home/{{ docker_user }}"
     anaconda_path: "{{ local_path }}/{{ anacondadir }}"
     default_corr_path: "{{ corr_location }}/corr"
     conda: "{{ anaconda_path }}/bin/conda"
@@ -21,17 +21,12 @@
 
     - name: Copy src to build
       tags: [install]
-      copy: src={{ default_corr_path }} dest={{ inventory_dir }}/builds
+      shell: cp -R {{ default_corr_path }} {{ inventory_dir }}/builds
 
     - name: generate Dockerfile-db file.
       tags: [install]
       when: inventory_hostname in groups['db']
       template: src={{ inventory_dir }}/Dockerfile-db.j2 dest={{ inventory_dir }}/builds/Dockerfile-db
-
-    - name: copy mongodb.conf template.
-      tags: [install]
-      when: inventory_hostname in groups['db']
-      template: src={{ inventory_dir }}/mongodb.conf.j2 dest={{ inventory_dir }}/builds/mongodb.conf
 
     - name: generate Dockerfile-api file.
       tags: [install]

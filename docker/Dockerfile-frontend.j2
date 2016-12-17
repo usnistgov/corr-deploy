@@ -11,25 +11,26 @@ RUN apt-get install -y build-essential
 RUN apt-get -y update
 RUN apt-get install -y git
 RUN apt-get install -y wget
-RUN apt-get -y update
-RUN apt-get install -y jekyll
+RUN apt-get update
+RUN apt-get install -y ruby ruby-dev make gcc nodejs
+RUN gem install jekyll --no-rdoc --no-ri
 
 ## Create a user with no sudo password.
 
-RUN useradd -m {{ ansible_ssh_user }}
-RUN passwd -d {{ ansible_ssh_user }}
-RUN adduser {{ ansible_ssh_user }} sudo
-RUN echo '{{ ansible_ssh_user }} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN useradd -m {{ docker_user }}
+RUN passwd -d {{ docker_user }}
+RUN adduser {{ docker_user }} sudo
+RUN echo '{{ docker_user }} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-USER {{ ansible_ssh_user }}
+USER {{ docker_user }}
 WORKDIR {{ local_path }}
 
 COPY requirements.yaml {{ local_path }}/requirements.yaml
 COPY corr {{ local_path }}/corr
 
-RUN sudo chown {{ ansible_ssh_user }}:{{ ansible_ssh_user }} {{ local_path }}/corr -R
+RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
 
-RUN sudo chown {{ ansible_ssh_user }}:{{ ansible_ssh_user }} {{ local_path }}/requirements.yaml
+RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/requirements.yaml
 
 # RUN git clone -b {{corr_version}} https://github.com/{{ corr_repo }}.git
 RUN wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh

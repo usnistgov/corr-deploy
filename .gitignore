@@ -3,3 +3,4 @@ hosts.dev
 docker/builds
 data
 corr-storage
+.DS_Store

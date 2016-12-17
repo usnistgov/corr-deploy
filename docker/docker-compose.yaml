@@ -10,9 +10,8 @@ services:
      - "27017"
     volumes:
      - /data/db:/data/db
-    networks:
-      db_net:
-        ipv4_address: 0.0.0.0
+    # networks:
+    #   - db_net
   corrapi:
     build:
         context: ./builds
@@ -20,12 +19,11 @@ services:
     ports:
      - "5100:5100"
     volumes:
-     - /home/fyc/corr-storage:/home/corradmin/corr-storage
+     - /corr-storage:/home/corradmin/corr-storage
     depends_on:
      - "corrdb"
-    networks:
-      api_net:
-        ipv4_address: 0.0.0.0
+    # networks:
+    #   - api_net
   corrcloud:
     build:
         context: ./builds
@@ -33,14 +31,13 @@ services:
     ports:
      - "5200:5200"
     volumes:
-     - /home/fyc/corr-storage:/home/corradmin/corr-storage
+     - /corr-storage:/home/corradmin/corr-storage
     expose:
      - "5200"
     depends_on:
      - "corrdb"
-    networks:
-      cloud_net:
-        ipv4_address: 0.0.0.0
+    # networks:
+    #   - cloud_net
   corrview:
     build:
         context: ./builds
@@ -49,16 +46,27 @@ services:
      - "5000:5000"
     depends_on:
      - "corrcloud"
-    networks:
-      view_net:
-        ipv4_address: 129.6.196.43
+    # networks:
+    #   - view_net
 
-networks:
-  db_net:
-     driver: bridge
-  api_net:
-     driver: bridge
-  cloud_net:
-     driver: bridge
-  view_net:
-     driver: bridge
+# networks:
+#   db_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
+#   api_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
+#   cloud_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
+#   view_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
