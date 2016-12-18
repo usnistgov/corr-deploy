@@ -26,10 +26,10 @@ before_install:
 install:
 - if [`uname` = "Linux"]; then
     cd native;
-    sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.travis;
+    sudo bash config.bash --ask-sudo --tags install --inventory-file builds/hosts.travis;
   elif [`uname` = "Darwin"]; then
     cd docker;
-    sudo ./ansible-docker.bash --ask-sudo --tags install --inventory-file hosts.travis;
+    sudo bash ansible-docker.bash --ask-sudo --tags install --inventory-file hosts.travis;
     sudo mv builds/corr-storage /corr-storage;
     sudo mv builds/data /data;
   fi
