@@ -19,8 +19,10 @@ This toolkit allows a granular deployment of the different components of CoRR:
 db, api, cloud and frontend.
 The components can be deployed in the same host or in four different hosts.
 
-[![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/usnistgov/corr)
 [![Travis CI](https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master)](https://travis-ci.org/faical-yannick-congo/corr-deploy)
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/materialsinnovation/pymks)
+[![Reathedocs](https://readthedocs.org/projects/pymks/badge/?version=latest)](http://pymks.readthedocs.io/en/latest/?badge=latest)
+[![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/usnistgov/corr)
 [![Lincense](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE)
 
 * **[LICENSE](LICENSE)** – the license.
