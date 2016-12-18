@@ -23,7 +23,7 @@ before_install:
     sudo mkdir /corr-src/corr;
   fi
 
-install:
+script:
 - if [`uname` = "Linux"]; then
     sudo ./native/config.bash --ask-sudo --tags install --inventory-file native/builds/hosts.travis;
   elif [`uname` = "Darwin"]; then
