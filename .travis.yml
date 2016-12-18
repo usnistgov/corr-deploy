@@ -1,4 +1,4 @@
-language: bash
+language: generic
 
 branches:
   only:
@@ -23,11 +23,15 @@ before_install:
     sudo mkdir /corr-src/corr;
   fi
 
-script:
+install:
 - if [`uname` = "Linux"]; then
-    sudo ./native/config.bash --ask-sudo --tags install --inventory-file native/builds/hosts.travis;
+    cd native;
+    chmod a+x config.bash
+    sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.travis;
   elif [`uname` = "Darwin"]; then
-    sudo ./docker/ansible-docker.bash --ask-sudo --tags install --inventory-file docker/hosts.travis;
+    cd docker;
+    chmod a+x ansible-docker.bash
+    sudo ./ansible-docker.bash --ask-sudo --tags install --inventory-file hosts.travis;
     sudo mv builds/corr-storage /corr-storage;
     sudo mv builds/data /data;
   fi
