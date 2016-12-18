@@ -9,16 +9,6 @@
 See the live instance at <a href="http://corr-root.org/">corr-root.org:5000</a>.
 </strong></sup></p>
 
-The Cloud of Reproducible Records (CoRR) is a web  app for storing,
-viewing and managing metadata associated with scientific code execution records.
-
-This repository is the toolkit required to manage a development and production
-instance of the CoRR platform.
-
-This toolkit allows a granular deployment of the different components of CoRR:
-db, api, cloud and frontend.
-The components can be deployed in the same host or in four different hosts.
-
 <p align="center">
 <a href="https://travis-ci.org/faical-yannick-congo/corr-deploy" target="_blank">
 <img src="https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master"
@@ -39,6 +29,16 @@ alt="Reathedocs">
 <img src="https://img.shields.io/badge/license-mit-blue.svg" alt="License" height="18">
 </a>
 </p>
+
+The Cloud of Reproducible Records (CoRR) is a web  app for storing,
+viewing and managing metadata associated with scientific code execution records.
+
+This repository is the toolkit required to manage a development and production
+instance of the CoRR platform.
+
+This toolkit allows a granular deployment of the different components of CoRR:
+db, api, cloud and frontend.
+The components can be deployed in the same host or in four different hosts.
 
 * **[LICENSE](LICENSE)** – the license.
 
