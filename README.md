@@ -9,6 +9,39 @@
 See the live instance at <a href="http://corr-root.org/">corr-root.org:5000</a>.
 </strong></sup></p>
 
+<p align="center">
+<a href="https://travis-ci.org/faical-yannick-congo/corr-deploy" target="_blank">
+<img src="https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master"
+alt="Travis CI">
+</a>
+<a href="https://github.com/faical-yannick-congo/corr-deploy/issues" target="_blank">
+<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/issues.svg?style=flat-square"
+alt="Github Issues">
+</a>
+<a href="https://github.com/faical-yannick-congo/corr-deploy/pulls" target="_blank">
+<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/pulls.svg?style=flat-square"
+alt="Github Issues">
+</a>
+<!-- <a href="https://github.com/faical-yannick-congo/corr-deploy/issues" target="_blank">
+<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/issues.svg?style=flat-square"
+alt="Python Version">
+</a> -->
+<a href="http://mybinder.org/repo/faical-yannick/corr-deploy" target="_blank">
+<img src="http://mybinder.org/badge.svg"
+alt="Binder">
+</a>
+<a href="http://corr-deploy.readthedocs.io/en/latest/?badge=latest" target="_blank">
+<img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest"
+alt="Reathedocs">
+</a>
+<a href="https://gitter.im/usnistgov/corr">
+<img src="https://img.shields.io/gitter/room/gitterHQ/gitter.svg" alt="Gitter Chat" height="18">
+</a>
+<a href="https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE">
+<img src="https://img.shields.io/badge/license-mit-blue.svg" alt="License" height="18">
+</a>
+</p>
+
 The Cloud of Reproducible Records (CoRR) is a web  app for storing,
 viewing and managing metadata associated with scientific code execution records.
 
@@ -18,12 +51,6 @@ instance of the CoRR platform.
 This toolkit allows a granular deployment of the different components of CoRR:
 db, api, cloud and frontend.
 The components can be deployed in the same host or in four different hosts.
-
-[![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/usnistgov/corr)
-[![Travis CI](https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master)](https://travis-ci.org/faical-yannick-congo/corr-deploy)
-[![Lincense](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE.md)
-
-* **[LICENSE](LICENSE)** – the license.
 
 ## Native Linux management
 
