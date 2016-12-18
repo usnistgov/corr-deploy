@@ -61,19 +61,19 @@ component have to access the storage. Running them separately will result on inc
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
 as sftp will be prefered over the current capability.
 
-    ## Development
-    The current [hosts.docker](hosts.docker) file contains the development configuration for the platform to
-    be installed and deployed locally.
+## Development
+The current [hosts.docker](hosts.docker) file contains the development configuration for the platform to
+be installed and deployed locally.
 
-    ## Production
-    For production deployment and installation, a modified version of the [hosts.docker](hosts.docker) file
-    has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
-    Also the ssh key and user should be updated.
+## Production
+For production deployment and installation, a modified version of the [hosts.docker](hosts.docker) file
+has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
+Also the ssh key and user should be updated.
 
-    ## Debug
-    Each component in the platform containers produce a log accessible through docker-compose:
+## Debug
+Each component in the platform containers produce a log accessible through docker-compose:
 
-    	$ sudo docker-compose logs corrdb
-    	$ sudo docker-compose logs corrapi
-    	$ sudo docker-compose logs corrcloud
-    	$ sudo docker-compose logs corrview
+	$ sudo docker-compose logs corrdb
+	$ sudo docker-compose logs corrapi
+	$ sudo docker-compose logs corrcloud
+	$ sudo docker-compose logs corrview
