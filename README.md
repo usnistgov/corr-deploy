@@ -21,7 +21,7 @@ The components can be deployed in the same host or in four different hosts.
 
 [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/usnistgov/corr)
 [![Travis CI](https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master)](https://travis-ci.org/faical-yannick-congo/corr-deploy)
-[![Lincense](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE.md)
+[![Lincense](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE)
 
 * **[LICENSE](LICENSE)** – the license.
 
