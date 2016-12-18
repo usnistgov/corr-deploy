@@ -2,6 +2,32 @@ branches:
   only:
   - master
 
+os:
+  - linux
+  - osx
+
 before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq ansible
+- if [`uname` = "Linux"]; then
+    sudo apt-get update -qq
+    sudo apt-get install -qq ansible
+    sudo mv builds/corr-storage /corr-storage
+    sudo mkdir /corr-src
+    sudo mkdir /corr-src/corr
+  elif [`uname` = "Darwin"]; then
+  	bundle install
+  	brew update
+  	brew install ansible
+  	sudo mkdir /corr-src
+    sudo mkdir /corr-src/corr
+  fi
+
+install:
+- if [`uname` = "Linux"]; then
+	cd native
+    sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.travis
+  elif [`uname` = "Darwin"]; then
+  	cd docker
+  	sudo ./ansible-docker.bash --ask-sudo --tags install --inventory-file hosts.travis
+  	sudo mv builds/corr-storage /corr-storage
+  	sudo mv builds/data /data
+  fi
