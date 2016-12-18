@@ -4,7 +4,7 @@
   vars:
     local_path: /home/{{ ansible_ssh_user }}
     anaconda_path: "{{ local_path }}/{{ anacondadir }}"
-    default_corr_path: "{{ local_path }}/corr"
+    default_corr_path: "{{ corr_location }}/corr"
     conda: "{{ anaconda_path }}/bin/conda"
     env_path: "{{ anaconda_path }}/envs/{{ corr_env }}/bin"
     python: "{{ anaconda_path }}/envs/{{ corr_env }}/bin/python"
