@@ -85,5 +85,15 @@ will be docker containers.
 Differently from the native setup, the docker based one does not come with nginx
 and ufw and will have to be managed separetly after the deployment in a production
 environment.
+To run the platform each container can be addressed as the following:
+
+    $ sudo docker-compose (run -d)/stop corrdb
+    $ sudo docker-compose (run -d)/stop corrapi
+    $ sudo docker-compose (run -d)/stop corrcloud
+    $ sudo docker-compose (run -d)/stop corrview
+    
+The whole platform can be managed by typing:
+
+    $ sudo docker-compose up/down
 
 To learn the specifics please refer to the [Docker README](docker/README.md)
