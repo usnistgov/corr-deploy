@@ -1,0 +1,17 @@
+- name: delete corr repository
+  file:
+    path: "{{ default_corr_path }}"
+    state: absent
+  become: true
+  tags: [install]
+  when: rev_parse.rc != 0
+
+- name: clone corr repository
+  git:
+    repo: https://github.com/{{ corr_repo }}.git
+    dest: "{{ default_corr_path }}"
+    version: "{{ corr_version }}"
+    clone: yes
+    force: yes
+  tags: [install]
+  when: rev_parse.rc != 0

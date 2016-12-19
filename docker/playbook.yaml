@@ -1,0 +1,125 @@
+- name: playbook for docker-compose CoRR
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars:
+    local_path: "/home/{{ docker_user }}"
+    anaconda_path: "{{ local_path }}/{{ anacondadir }}"
+    default_corr_path: "{{ corr_location }}/corr"
+    conda: "{{ anaconda_path }}/bin/conda"
+    env_path: "{{ anaconda_path }}/envs/{{ corr_env }}/bin"
+    python: "{{ anaconda_path }}/envs/{{ corr_env }}/bin/python"
+  tasks:
+    - include: clean.yaml
+      tags: [install]
+
+    - include: corr_path.yaml
+      tags: [install]
+
+    - include: clone.yaml
+      tags: [install]
+
+    - name: Copy src to build
+      tags: [install]
+      shell: cp -R {{ default_corr_path }} {{ inventory_dir }}/builds
+
+    - name: generate Dockerfile-db file.
+      tags: [install]
+      when: inventory_hostname in groups['db']
+      template: src={{ inventory_dir }}/Dockerfile-db.j2 dest={{ inventory_dir }}/builds/Dockerfile-db
+
+    - name: generate Dockerfile-api file.
+      tags: [install]
+      when: inventory_hostname in groups['api']
+      template: src={{ inventory_dir }}/Dockerfile-api.j2 dest={{ inventory_dir }}/builds/Dockerfile-api
+
+    - name: copy api config file
+      tags: [install]
+      when: inventory_hostname in groups['api']
+      template: src={{ inventory_dir }}/config-api.py.j2 dest={{ inventory_dir }}/builds/corr/corr-api/config.py
+
+    - name: generate Dockerfile-cloud file.
+      tags: [install]
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/Dockerfile-cloud.j2 dest={{ inventory_dir }}/builds/Dockerfile-cloud
+
+    - name: copy stormpath config file
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/apiKey.properties.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/apiKey.properties
+      tags: [install]
+
+    - name: copy cloud config file
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/config-cloud.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/config.py
+      tags: [install]
+
+    - name: generate Dockerfile-frontend file.
+      tags: [install]
+      when: inventory_hostname in groups['frontend']
+      template: src={{ inventory_dir }}/Dockerfile-frontend.j2 dest={{ inventory_dir }}/builds/Dockerfile-frontend
+      become: true
+
+    - name: copy frontend config file
+      tags: [install]
+      when: inventory_hostname in groups['frontend']
+      template: src={{ inventory_dir }}/config-frontend.js.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config.js
+
+    - name: copy requirements.
+      tags: [install]
+      shell: cp requirements.yaml builds
+
+    - name: create ~/s3 directory
+      tags: [install]
+      when: >
+        inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud']
+      file: path={{ inventory_dir }}/builds/aws state=directory
+
+    - name: copy s3 config
+      tags: [install]
+      when: >
+        inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/config-s3.j2 dest={{ inventory_dir }}/builds/aws/config
+
+    - name: build the latest db image
+      tags: [install]
+      when: inventory_hostname in groups['db']
+      shell: docker-compose build corrdb
+      become: true
+
+    - name: build the latest api image
+      tags: [install]
+      when: inventory_hostname in groups['api']
+      shell: docker-compose build corrapi
+      become: true
+
+    - name: build the latest cloud image
+      tags: [install]
+      when: inventory_hostname in groups['cloud']
+      shell: docker-compose build corrcloud
+      become: true
+
+    - name: build the latest frontend image
+      tags: [install]
+      when: inventory_hostname in groups['frontend']
+      shell: docker-compose build corrview
+      become: true
+
+    - include: serve.yaml
+      tags: [serve]
+
+    - include: restart.yaml
+      tags: [restart]
+
+    - include: scale.yaml
+      tags: [scale]
+
+    - include: stop.yaml
+      tags: [stop]
+
+    - include: status.yaml
+      tags: [status]
+
+    - include: clean.yaml
+      tags: [clean]

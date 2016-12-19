@@ -1,0 +1,72 @@
+version: '2'
+services:
+  corrdb:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-db
+    ports:
+     - "27017:27017"
+    expose:
+     - "27017"
+    volumes:
+     - /data/db:/data/db
+    # networks:
+    #   - db_net
+  corrapi:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-api
+    ports:
+     - "5100:5100"
+    volumes:
+     - /corr-storage:/home/corradmin/corr-storage
+    depends_on:
+     - "corrdb"
+    # networks:
+    #   - api_net
+  corrcloud:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-cloud
+    ports:
+     - "5200:5200"
+    volumes:
+     - /corr-storage:/home/corradmin/corr-storage
+    expose:
+     - "5200"
+    depends_on:
+     - "corrdb"
+    # networks:
+    #   - cloud_net
+  corrview:
+    build:
+        context: ./builds
+        dockerfile: Dockerfile-frontend
+    ports:
+     - "5000:5000"
+    depends_on:
+     - "corrcloud"
+    # networks:
+    #   - view_net
+
+# networks:
+#   db_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
+#   api_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
+#   cloud_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16
+#   view_net:
+#     driver: overlay
+#     ipam:
+#       config:
+#         - subnet: 0.0.0.0/16

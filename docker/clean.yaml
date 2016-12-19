@@ -1,0 +1,98 @@
+- stat: path=builds
+  register: build_folder
+
+- name: create builds folder
+  file: path=builds state=directory
+  when: build_folder.stat.exists == False
+
+- name: remove aws
+  shell: rm -rf builds/aws
+  when: >
+    inventory_hostname in groups['api'] or
+    inventory_hostname in groups['cloud'] and
+    build_folder.stat.exists == True
+
+- name: remove src
+  shell: rm -rf builds/corr
+  when: build_folder.stat.exists == True
+
+- name: remove db config
+  shell: rm -rf builds/mongodb.conf
+  when: inventory_hostname in groups['db']
+
+- name: remove requirements
+  shell: rm -rf builds/requirements.yaml
+  when: >
+    inventory_hostname in groups['db'] and
+    inventory_hostname in groups['api'] and
+    inventory_hostname in groups['cloud'] and
+    inventory_hostname in groups['frontend'] and
+    build_folder.stat.exists == True
+
+- name: remove Dockerfile Db
+  shell: rm -rf builds/Dockerfile-db
+  when: >
+    inventory_hostname in groups['db'] and
+    build_folder.stat.exists == True
+
+- name: remove Dockerfile Api
+  shell: rm -rf builds/Dockerfile-api
+  when: >
+    inventory_hostname in groups['api'] and
+    build_folder.stat.exists == True
+
+- name: remove Dockerfile Cloud
+  shell: rm -rf builds/Dockerfile-cloud
+  when: >
+    inventory_hostname in groups['cloud'] and
+    build_folder.stat.exists == True
+
+- name: remove Dockerfile Frontend
+  shell: rm -rf builds/Dockerfile-frontend
+  when: >
+    inventory_hostname in groups['frontend'] and
+    build_folder.stat.exists == True
+
+- name: create data folder
+  file: path=builds/data state=directory
+  when: build_folder.stat.exists == False
+
+- name: create db folder
+  file: path=builds/data/db state=directory
+  when: build_folder.stat.exists == False
+
+- name: create corr-storage folder
+  file: path=builds/corr-storage state=directory
+  when: build_folder.stat.exists == False
+
+- name: create pictures storage folder
+  file: path=builds/corr-storage/corr-pictures state=directory
+  when: build_folder.stat.exists == False
+
+- name: create bundles storage folder
+  file: path=builds/corr-storage/corr-bundles state=directory
+  when: build_folder.stat.exists == False
+
+- name: create files storage folder
+  file: path=builds/corr-storage/corr-files state=directory
+  when: build_folder.stat.exists == False
+
+- name: create logos storage folder
+  file: path=builds/corr-storage/corr-logos state=directory
+  when: build_folder.stat.exists == False
+
+- name: create outputs storage folder
+  file: path=builds/corr-storage/corr-outputs state=directory
+  when: build_folder.stat.exists == False
+
+- name: create resources storage folder
+  file: path=builds/corr-storage/corr-resources state=directory
+  when: build_folder.stat.exists == False
+
+- name: setup logos storage folder
+  shell: cp assets/default-logo.png builds/corr-storage/corr-logos
+  when: build_folder.stat.exists == False
+
+- name: setup pictures storage folder
+  shell: cp assets/default-picture.png builds/corr-storage/corr-pictures
+  when: build_folder.stat.exists == False

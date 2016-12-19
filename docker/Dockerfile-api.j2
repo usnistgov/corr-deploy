@@ -1,0 +1,54 @@
+## Dockerfile to create devel version of CoRR Database
+
+FROM ubuntu:16.04
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get -y update
+RUN apt-get install -y sudo
+RUN apt-get install -y apt-utils
+RUN apt-get install bzip2
+RUN apt-get install -y build-essential
+RUN apt-get -y update
+RUN apt-get install -y git
+RUN apt-get install -y wget
+#RUN sudo apt-get install -y mongodb
+
+## Create a user with no sudo password.
+
+RUN useradd -m {{ docker_user }}
+RUN passwd -d {{ docker_user }}
+RUN adduser {{ docker_user }} sudo
+RUN echo '{{ docker_user }} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER {{ docker_user }}
+WORKDIR {{ local_path }}
+
+COPY requirements.yaml {{ local_path }}/requirements.yaml
+COPY corr {{ local_path }}/corr
+COPY aws {{ local_path }}
+
+RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
+
+RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/requirements.yaml
+
+#RUN git clone -b {{corr_version}} https://github.com/{{ corr_repo }}.git
+RUN wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+RUN bash Miniconda-latest-Linux-x86_64.sh -b -p {{ anaconda_path }}
+RUN echo 'export PATH="{{ local_path }}/anaconda/bin:$PATH"'>> {{ local_path }}/.bashrc
+RUN {{ conda }} update -y conda
+RUN {{ conda }} create -y -n {{ corr_env }} python=3.4
+RUN {{ conda }} env update -n {{ corr_env }} --file {{ local_path }}/requirements.yaml
+
+RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
+
+WORKDIR {{ local_path }}/corr/corr-db
+
+RUN {{ env_path }}/python setup.py install
+
+WORKDIR {{ local_path }}/corr/corr-api
+
+EXPOSE {{ mapped_port }}
+
+VOLUME {{ local_path }}/corr-storage
+
+CMD {{ env_path }}/python run.py --host {{ hostvars['apihost']['ansible_ssh_host'] }} --port {{hostvars['apihost']['mapped_port']}}
