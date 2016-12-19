@@ -28,4 +28,4 @@
   when: corr_env_dir.stat.exists == False
 
 - name: install required corrdb packages
-  shell: "{{ conda }} env update -n {{ corr_env }} --file {{ corr_path }}/builds/requirements.yaml"
+  shell: "{{ conda }} env update -n {{ corr_env }} --file builds/requirements.yaml"
