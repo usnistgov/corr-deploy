@@ -18,7 +18,7 @@ In this setup, the scripts will expected the environment corr-local. To create t
 
 The installation requires sudo priviledges as following:
 
-    $ sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.local
 
 The hosts.local file contains the general configuration variables.
 Before running the installation script, you should update variables in this file.
@@ -45,21 +45,21 @@ as sftp will be prefered over the current capability.
 ## Development
 For development in native mode, you may follow the steps below.
 Start the dabatase:
-
-    	$ sudo service mongodb start
+	
+	$ sudo service mongodb start
 
 Run the api component:
 
-    	$ cd corr-api
+	$ cd corr-api
 	$ python run.py
 
 Run the cloud component:
-
+	
 	$ cd ../corr-cloud
 	$ python run.py
 
 Run the frontend component:
-
+	
 	$ cd ../corr-view/frontend
 	$ jekyll serve --watch --port 5000 --host 0.0.0.0
 
@@ -68,7 +68,7 @@ be installed and deployed locally.
 
 ## Production
 The platform can be deployed through the following command:
-
+	
 	$ sudo ./config.bash --ask-sudo --tags serve --inventory-file builds/hosts.local
 
 There is also the possibility to deploy each component separately by using the --limit
