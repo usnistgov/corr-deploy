@@ -14,19 +14,19 @@ See the live instance at <a href="http://corr-root.org/">corr-root.org:5000</a>.
 <img src="https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master"
 alt="Travis CI">
 </a>
-<a href="https://github.com/faical-yannick-congo/corr-deploy/issues" target="_blank">
-<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/issues.svg?style=flat-square"
+<a href="https://github.com/usnistgov/corr-deploy/issues" target="_blank">
+<img src="http://githubbadges.herokuapp.com/usnistgov/corr-deploy/issues.svg?style=flat-square"
 alt="Github Issues">
 </a>
-<a href="https://github.com/faical-yannick-congo/corr-deploy/pulls" target="_blank">
-<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/pulls.svg?style=flat-square"
+<a href="https://github.com/usnistgov/corr-deploy/pulls" target="_blank">
+<img src="http://githubbadges.herokuapp.com/usnistgov/corr-deploy/pulls.svg?style=flat-square"
 alt="Github Issues">
 </a>
 <!-- <a href="https://github.com/faical-yannick-congo/corr-deploy/issues" target="_blank">
 <img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/issues.svg?style=flat-square"
 alt="Python Version">
 </a> -->
-<a href="http://mybinder.org/repo/faical-yannick/corr-deploy" target="_blank">
+<a href="http://mybinder.org/repo/usnistgov/corr-deploy" target="_blank">
 <img src="http://mybinder.org/badge.svg"
 alt="Binder">
 </a>
@@ -37,7 +37,7 @@ alt="Reathedocs">
 <a href="https://gitter.im/usnistgov/corr">
 <img src="https://img.shields.io/gitter/room/gitterHQ/gitter.svg" alt="Gitter Chat" height="18">
 </a>
-<a href="https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE">
+<a href="https://github.com/usnistgov/corr-deploy/blob/master/LICENSE">
 <img src="https://img.shields.io/badge/license-mit-blue.svg" alt="License" height="18">
 </a>
 </p>
