@@ -6,7 +6,7 @@
 </p>
 
 <p align="center"><sup><strong>
-See the live instance at <a href="http://corr-root.org/">corr-root.org:5000</a>.
+The platform source code can be accessed at <a href="https://github.com/usnistgov/corr">CoRR Source Code</a>.
 </strong></sup></p>
 
 <p align="center">
