@@ -5,6 +5,11 @@
          class="inline">
 </p>
 
+<h1> <p align="center"><sup><strong>
+CoRR &ndash; The Cloud of Reproducible Records
+</strong></sup></p>
+</h1>
+
 <p align="center"><sup><strong>
 See the live instance at <a href="http://corr-root.org/">corr-root.org:5000</a>.
 </strong></sup></p>
@@ -42,6 +47,8 @@ alt="Reathedocs">
 </a>
 </p>
 
+## Platform Provisioning
+
 The Cloud of Reproducible Records (CoRR) is a web  app for storing,
 viewing and managing metadata associated with scientific code execution records.
 
@@ -52,7 +59,7 @@ This toolkit allows a granular deployment of the different components of CoRR:
 db, api, cloud and frontend.
 The components can be deployed in the same host or in four different hosts.
 
-## Native Linux management
+## Native Linux Management
 
 This management is based on a linux ready configuration with ansible.
 For none linux systems report to the next section with docker.
@@ -71,7 +78,7 @@ The CoRR platform instance also handles the ufw firewall configurations.
 
 To learn the specifics please refer to the [Native README](native/README.md)
 
-## Docker based management
+## Docker based Management
 
 This management setup depends on ansible and docker.
 It will most likely work on any systems supporting ansible and docker-compose
