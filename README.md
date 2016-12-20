@@ -36,7 +36,7 @@ alt="Python Version">
 alt="Binder">
 </a>
 <a href="http://corr-deploy.readthedocs.io/en/latest/?badge=latest" target="_blank">
-<img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest"
+<img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest">
 
 alt="Reathedocs">
 </a>
