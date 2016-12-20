@@ -31,7 +31,6 @@ RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
 
 RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/requirements.yaml
 
-#RUN git clone -b {{corr_version}} https://github.com/{{ corr_repo }}.git
 RUN wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
 RUN bash Miniconda-latest-Linux-x86_64.sh -b -p {{ anaconda_path }}
 RUN echo 'export PATH="{{ local_path }}/anaconda/bin:$PATH"'>> {{ local_path }}/.bashrc
