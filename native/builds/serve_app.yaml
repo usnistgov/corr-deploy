@@ -19,8 +19,8 @@
 - name: copy s3 config
   template: src={{ inventory_dir }}/config-s3.j2 dest={{ local_path}}/aws/config
 
-# - name: copy s3 credentials
-#   template: src={{ inventory_dir }}/credentials-s3.j2 dest={{ local_path}}/aws/credentials
+- name: copy s3 credentials
+  template: src={{ inventory_dir }}/credentials-s3.j2 dest={{ local_path}}/aws/credentials
 
 - name: copy service template for systemd
   template: src={{ inventory_dir }}/app.service.j2 dest=/lib/systemd/system/{{ app_service_name }}.service
@@ -53,12 +53,12 @@
   service: name=nginx state=restarted
   become: true
 
-# - name: enable port in ufw
-#   ufw:
-#     rule: allow
-#     port: "{{ mapped_port }}"
-#     proto: tcp
-#   become: true
+- name: enable port in ufw
+  ufw:
+    rule: allow
+    port: "{{ mapped_port }}"
+    proto: tcp
+  become: true
 
 - name: check that app is up and running
   uri: url={{ test_path }}

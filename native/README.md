@@ -5,10 +5,15 @@
          class="inline">
 </p>
 
+<h1> <p align="center"><sup><strong>
+Native Linux Deployment
+</strong></sup></p>
+</h1>
+
 This management setup is most effective for Linux systems that support
 ansible. The remote and host environment have to both be Linux based.
 
-# Installation
+# Native Linux Installation
 The deployment setup is run by executing a bash script: [config.bash](config.bash).
 Before starting the installation, you should have a environment ready to avoid issues with your
 root system environment. Install anaconda if not already done.
@@ -35,14 +40,14 @@ The installation setup also allows specific components installations:
 	$ sudo ./config.bash --ask-sudo --tags install --limit cloud --inventory-file builds/hosts.local
 	$ sudo ./config.bash --ask-sudo --tags install --limit frontend --inventory-file builds/hosts.local
 
-# Deployment
+# Native Linux Deployment
 In case of the platform deployed with the file system as a storage medium, There is a requirement that
 constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both 
 component have to access the storage. Running them separately will result on inconsistencies. Further
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
 as sftp will be prefered over the current capability.
 
-## Development
+## Native Linux Development
 For development in native mode, you may follow the steps below.
 Start the dabatase:
 	
@@ -66,7 +71,7 @@ Run the frontend component:
 The current [hosts.local](builds/hosts.local) file contains the development configuration for the platform to
 be installed and deployed locally.
 
-## Production
+## Native Linux Production
 The platform can be deployed through the following command:
 	
 	$ sudo ./config.bash --ask-sudo --tags serve --inventory-file builds/hosts.local
@@ -83,7 +88,7 @@ For remote production deployment and installation, a modified version of the [ho
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
 Also the ssh key and user should be updated.
 
-## Debugging
+## Native Linux Debugging
 In the case of development, you will be able to have direct logs from the components executions. For 
 the production version on the other end, all component are system services. As such they all produce
 logs stored in /var/log. You will find: mongodb, corrapi, corrcloud. corrfrontend does not currently
