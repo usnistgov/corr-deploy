@@ -36,9 +36,7 @@ alt="Python Version">
 alt="Binder">
 </a>
 <a href="http://corr-deploy.readthedocs.io/en/latest/?badge=latest" target="_blank">
-<img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest">
-
-alt="Reathedocs">
+<img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest" alt="Reathedocs">
 </a>
 <a href="https://gitter.im/usnistgov/corr">
 <img src="https://img.shields.io/gitter/room/gitterHQ/gitter.svg" alt="Gitter Chat" height="18">
