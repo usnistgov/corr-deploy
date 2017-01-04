@@ -5,6 +5,10 @@
     force: yes
   become: true
 
+- name: Cleaning up
+  shell: rm -rf {{ corr_location }}/corr; mkdir {{ corr_location }}/corr
+  become: true
+
 - name: Get playbook path
   shell: cd {{ corr_location }}/corr; git rev-parse --show-toplevel
   register: rev_parse
