@@ -10,13 +10,13 @@ apihost ansible_ssh_host=localhost
 
 [api:vars]
 mapped_port=5100
-test_path=http://0.0.0.0:5100/corr/api/v0.1/public/users
+test_path=https://0.0.0.0:5100/corr/api/v0.1/public/users
 app_service_name=corrapi
 socket_file=/tmp/corrapi.sock
 access_log=/var/log/corr-api-access.log
 error_log=/var/log/corr-api-error.log
 gunicorn_config_file=corr_config_api.py
-mode=http
+mode=https
 
 [cloud]
 cloudhost ansible_ssh_host=localhost
@@ -26,20 +26,20 @@ stormpath_id=4ZH7A041SC938W0DK25JX3CIA
 stormpath_secret=ZA6Fan22PeP+pKtEZfilXJsXjZkUWrw8u7WeIBhTVgY
 stormpath_app=corr-dev
 mapped_port=5200
-test_path=http://0.0.0.0:5200/cloud/v0.1/public/user/home
+test_path=https://0.0.0.0:5200/cloud/v0.1/public/user/home
 app_service_name=corrcloud
 socket_file=/tmp/corrcloud.sock
 access_log=/var/log/corr-cloud-access.log
 error_log=/var/log/corr-cloud-error.log
 gunicorn_config_file=corr_config_cloud.py
-mode=http
+mode=https
 
 [frontend]
 frontendhost ansible_ssh_host=localhost
 
 [frontend:vars]
 mapped_port=5000
-test_path=http://0.0.0.0:5000/
+test_path=https://0.0.0.0:5000/
 app_service_name=corrfrontend
 
 [all:children]
@@ -49,7 +49,7 @@ cloud
 frontend
 
 [all:vars]
-mode=http
+mode=https
 storage_type=filesystem
 storage_location=/home/fyc/
 storage_name=corr-storage

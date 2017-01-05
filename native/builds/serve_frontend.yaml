@@ -48,4 +48,4 @@
   become: true
 
 - name: check that the view is available
-  uri: url={{ test_path }}
+  uri: url={{ test_path }} validate_certs=no
