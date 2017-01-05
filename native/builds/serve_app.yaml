@@ -61,4 +61,4 @@
   become: true
 
 - name: check that app is up and running
-  uri: url={{ test_path }}
+  uri: url={{ test_path }} validate_certs=no

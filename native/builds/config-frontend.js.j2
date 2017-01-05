@@ -13,5 +13,13 @@ var config = {
                 failed();
             }
         });
+    },
+    error_modal: function (title, details){
+      $('#error-display-modal').openModal();
+      var error_title = document.getElementById("error-title");
+      var error_details = document.getElementById("error-details");
+      
+      error_title.value = title;
+      error_details.value = details;
     }
 }
