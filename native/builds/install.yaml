@@ -10,6 +10,10 @@
     python: "{{ anaconda_path }}/envs/{{ corr_env }}/bin/python"
   tasks:
 
+    - name: Cleaning up
+      shell: rm -rf {{ corr_location }}/corr; mkdir {{ corr_location }}/corr
+      become: true
+
     - include: corr_path.yaml
       tags: [always]
 
