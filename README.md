@@ -76,7 +76,7 @@ Also these services except for mongodb are all wrapped behind nginx and moreover
 behind gunicorn for corrapi and corrcloud and behind jekyll for the frontend.
 The CoRR platform instance also handles the ufw firewall configurations.
 
-To learn the specifics please refer to the [Native README](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/native/README.md)
+To learn the specifics please refer to the [Native README](https://github.com/usnistgov/corr-deploy/blob/master/native/README.md)
 
 ## Docker based Management
 
@@ -103,4 +103,4 @@ The whole platform can be managed by typing:
 
     $ sudo docker-compose up/down
 
-To learn the specifics please refer to the [Docker README](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/docker/README.md)
+To learn the specifics please refer to the [Docker README](https://github.com/usnistgov/corr-deploy/blob/master/docker/README.md)
