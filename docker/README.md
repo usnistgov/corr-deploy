@@ -16,12 +16,7 @@ to be Linux based.
 
 # Docker Based Installation
 The deployment setup is run by executing a bash script: [ansible-docker.bash](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/docker/ansible-docker.bash).
-Before starting the installation, you should have a environment ready to avoid issues with your
-root system environment. Install anaconda if not already done.
-In this setup, the scripts will expected the environment corr-local. To create this environment:
-
-	$ conda create -n corr-local python=3.4 anaconda
-
+BBefore starting the installation, you should be edit the builds/hosts.docker file and make a custom copy with the right parameters for your use case. In this setup, everything is done within conda environments and can be provided with the hosts configuration file. This way the system core environment is protected and scoped from being tempered by this setup. Also final uninstallation scheme is the deletion of this environment. 
 The installation requires sudo priviledges as following:
 
     $ sudo ./ansible-docker.bash --ask-sudo --tags install --inventory-file hosts.docker
@@ -30,12 +25,12 @@ The hosts.docker file contains the general configuration variables.
 The installation step produces a builds folder that contains the corr source code (corr),
 the aws config folder (aws), the database storage folder (data), the corr storage folder
 (corr-storage), the requirements file and all the platform components generated Dockerfile
-(Dockerfile-db. Dockerfile-api, Dockerfile-cloud, Dockerfile-frontend).
+(Dockerfile-db, Dockerfile-api, Dockerfile-cloud, Dockerfile-frontend).
 The data and corr-storage folders have to be moved to a specific location on the host machine.
 We recommand moving it to the root path to have /data and /corr-storage.
 On non linux platforms these folders have to be shared through Docker.
 For example on Mac OSX: [sharing-folders-docker.jpeg](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/docker/sharing-folders-docker.jpeg).
-During the installation process ansible will ssh into the hosts and produce the appropriate
+During the installation process ansible will ssh into the hosts and produces the appropriate
 builds content for the right platform component location (specified in the hosts.docker).
 The installation setup also allows specific components installations:
 
@@ -60,9 +55,9 @@ parameter:
 	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --limit corrcloud --inventory-file hosts.docker
 	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --limit corrfrontend --inventory-file hosts.docker
 
-In case of the platform deployed with the file system as a storage medium, There is a requirement that
+In case the platform is deployed with the file system as a storage medium, There is a requirement that
 constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both 
-component have to access the storage. Running them separately will result on inconsistencies. Further
+components have to access the storage. Running them separately will result on inconsistencies. Further
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
 as sftp will be prefered over the current capability.
 
