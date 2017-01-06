@@ -37,6 +37,18 @@
   when: init_system == "upstart"
   become: true
 
+- name: create corr-ssl directory
+  file: path=/corr-ssl state=directory
+  become: true
+
+- name: copy ssl certificate for nginx
+  template: src={{ inventory_dir }}/corr.crt dest=/corr-ssl/corr.crt
+  become: true
+
+- name: copy ssl key for nginx
+  template: src={{ inventory_dir }}/corr.key dest=/corr-ssl/corr.key
+  become: true
+
 - name: run server
   service: name={{ app_service_name }} state=restarted
   become: true

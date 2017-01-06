@@ -1,5 +1,7 @@
 hosts.aws
 hosts.dev
+corr.crt
+corr.key
 docker/builds
 data
 corr-storage
