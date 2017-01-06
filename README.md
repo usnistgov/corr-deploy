@@ -61,7 +61,7 @@ The components can be deployed in the same host or in four different hosts.
 ## Native Linux Management
 
 This management is based on a linux ready configuration with ansible.
-For none linux systems report to the next section with docker.
+For non linux systems report to the next section with docker.
 This setup was tested on Ubuntu systems: 14.04 to 16.04 and has proven
 to work.
 When using this native setup, your CoRR platform components (db, api, cloud
@@ -71,6 +71,7 @@ the linux service API interface except for the frontend:
     $ sudo service mongodb start/stop/restart
     $ sudo service corrapi start/stop/restart
     $ sudo service corrcloud start/stop/restart
+    
 Also these services except for mongodb are all wrapped behind nginx and moreover 
 behind gunicorn for corrapi and corrcloud and behind jekyll for the frontend.
 The CoRR platform instance also handles the ufw firewall configurations.
