@@ -40,7 +40,7 @@ The installation setup also allows specific components installations:
 	$ sudo ./config.bash --ask-sudo --tags install --limit frontend --inventory-file builds/hosts.local
 
 # Native Linux Deployment
-In case of the platform deployed with the file system as a storage medium, There is a requirement that
+In case the platform is deployed with the file system as a storage medium, There is a requirement that
 constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both 
 component have to access the storage. Running them separately will result on inconsistencies. Further
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
