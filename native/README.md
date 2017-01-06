@@ -15,22 +15,21 @@ ansible. The remote and host environment have to both be Linux based.
 
 # Native Linux Installation
 The deployment setup is run by executing a bash script: [config.bash](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/native/config.bash).
-Before starting the installation, you should have a environment ready to avoid issues with your
-root system environment. Install anaconda if not already done.
-In this setup, the scripts will expected the environment corr-local. To create this environment:
-
-	$ conda create -n corr-local python=3.4 anaconda
-
+Before starting the installation, you should be edit the builds/hosts.local file and make a custom
+copy with the right parameters for your use case.
+In this setup, everything is done within conda environments and can be provided with the hosts
+configuration file. This way the system core environment is protected and scoped from being
+tempered by this setup. Also final uninstallation scheme is the deletion of this environment.
 The installation requires sudo priviledges as following:
 
 	$ sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.local
 
-The hosts.local file contains the general configuration variables.
+Also the hosts.local file contains the general configuration variables.
 Before running the installation script, you should update variables in this file.
 The storage_location variable specifies where the corr-storage folder should be placed.
 
 The installation folder that contains the corr storage folder (corr-storage).
-The corr-storage folders have to be moved to the provided specific location.
+The filesystem based corr-storage folders have to be moved to the provided specific location.
 We recommand moving it to the root path to have /corr-storage on the api and cloud
 components' instance.
 The installation setup also allows specific components installations:
