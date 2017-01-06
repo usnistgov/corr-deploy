@@ -4,3 +4,5 @@ docker/builds
 data
 corr-storage
 .DS_Store
+corr.crt
+corr.key
