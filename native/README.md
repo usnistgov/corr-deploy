@@ -14,7 +14,7 @@ This management setup is most effective for Linux systems that support
 ansible. The remote and host environment have to both be Linux based.
 
 # Native Linux Installation
-The deployment setup is run by executing a bash script: [config.bash](config.bash).
+The deployment setup is run by executing a bash script: [config.bash](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/native/config.bash).
 Before starting the installation, you should have a environment ready to avoid issues with your
 root system environment. Install anaconda if not already done.
 In this setup, the scripts will expected the environment corr-local. To create this environment:
@@ -68,7 +68,7 @@ Run the frontend component:
 	$ cd ../corr-view/frontend
 	$ jekyll serve --watch --port 5000 --host 0.0.0.0
 
-The current [hosts.local](builds/hosts.local) file contains the development configuration for the platform to
+The current [hosts.local](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/native/builds/hosts.local) file contains the development configuration for the platform to
 be installed and deployed locally.
 
 ## Native Linux Production
@@ -84,7 +84,7 @@ parameter:
 	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file builds/hosts.local
 	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file builds/hosts.local
 
-For remote production deployment and installation, a modified version of the [hosts.local](builds/hosts.local) file
+For remote production deployment and installation, a modified version of the [hosts.local](https://raw.githubusercontent.com/usnistgov/corr-deploy/master/native/builds/hosts.local) file
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
 Also the ssh key and user should be updated.
 
