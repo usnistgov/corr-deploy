@@ -21,4 +21,3 @@
     clone: yes
     force: yes
   tags: [install]
-  when: rev_parse.rc != 0
