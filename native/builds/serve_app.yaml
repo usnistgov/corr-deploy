@@ -24,9 +24,44 @@
   when: storage_type == "filesystem" and storage_dir.stat.exists == False
   become: true
 
+- name: create storage bundles subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-bundles"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
+- name: create storage inputs subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-inputs"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
+- name: create storage outputs subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-outputs"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
+- name: create storage files subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-files"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
+- name: create storage pictures subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-pictures"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
+- name: create storage logos subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-logos"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
+- name: create storage resources subfolders when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}/corr-resources"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
+
 - name: allow read an write permission on filesystem is used.
   shell: "chmod -R a+rw {{ storage_location }}/{{ storage_name }}"
-  when: storage_type == "filesystem" and storage_dir.stat.exists == True
+  when: storage_type == "filesystem"
   become: true
 
 - name: copy service template for systemd
