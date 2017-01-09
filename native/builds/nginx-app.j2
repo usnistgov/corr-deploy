@@ -1,8 +1,8 @@
 server {
 	client_max_body_size 100m;
-    ssl_certificate     /corr-ssl/corr.crt;
-    ssl_certificate_key /corr-ssl/corr.key;
-    listen {{ mapped_port }} ssl;
+    {{ "ssl_certificate     /corr-ssl/corr.crt;" if mode == "https" }}
+	{{ "ssl_certificate_key /corr-ssl/corr.key;" if mode == "https" }}
+    {{ "listen "~mapped_port~" ssl;" if mode == "https" else "listen "~mapped_port~";"}}
     server_name 0.0.0.0 localhost {{ ansible_ssh_host }};
 
     location / {

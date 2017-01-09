@@ -9,16 +9,16 @@ MONGODB_SETTINGS = {
     'port': {{hostvars['dbhost']['mapped_port']}}
 }
 
+MODE = '{{mode}}'
+
 VIEW_SETTINGS = {
     'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}',
     'port': {{hostvars['frontendhost']['mapped_port']}},
-    'mode': '{{ hostvars['frontendhost']['mode'] }}',
 }
 
 API_SETTINGS = {
     'host': '{{ hostvars['apihost']['ansible_ssh_host'] }}',
     'port': {{hostvars['apihost']['mapped_port']}},
-    'mode': '{{ hostvars['apihost']['mode'] }}',
 }
 
 FILE_STORAGE = {
