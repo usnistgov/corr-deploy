@@ -11,7 +11,7 @@
     state: absent
   become: true
   tags: [install]
-  when: rev_parse.rc != 0
+  when: rev_parse.rc == 0
 
 - name: clone corr repository
   git:

@@ -16,7 +16,6 @@ socket_file=/tmp/corrapi.sock
 access_log=/var/log/corr-api-access.log
 error_log=/var/log/corr-api-error.log
 gunicorn_config_file=corr_config_api.py
-mode=https
 
 [cloud]
 cloudhost ansible_ssh_host=localhost
@@ -32,7 +31,6 @@ socket_file=/tmp/corrcloud.sock
 access_log=/var/log/corr-cloud-access.log
 error_log=/var/log/corr-cloud-error.log
 gunicorn_config_file=corr_config_cloud.py
-mode=https
 
 [frontend]
 frontendhost ansible_ssh_host=localhost
@@ -50,12 +48,23 @@ frontend
 
 [all:vars]
 mode=https
-storage_type=s3
-storage_location=us-east-1
+
+#storage_type=s3
+#storage_location=us-east-1
+#storage_name=corr-storage
+#storage_key_id=
+#storage_access_key=
+
+storage_type=filesystem
+storage_location=/home/fyc/
 storage_name=corr-storage
 storage_key_id=
 storage_access_key=
-access_type=stormpath
+
+#access_type=stormpath
+
+access_type=mongodb
+
 corr_env=corr-local
 corr_version=develop-0.1
 corr_repo=faical-yannick-congo/corr
