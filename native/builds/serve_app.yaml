@@ -13,14 +13,21 @@
 - set_fact:
     init_system: "{{ dpkg_stdout.stdout[0:7] }}"
 
-- name: create ~/s3 directory
-  file: path={{ local_path }}/aws state=directory
+- name: check if storage exists with file system in use.
+  stat: path={{ storage_location }}/{{ storage_name }}
+  when: storage_type == "filesystem"
+  register: storage_dir
+  become: true
 
-- name: copy s3 config
-  template: src={{ inventory_dir }}/config-s3.j2 dest={{ local_path}}/aws/config
+- name: create storage folder when file system is used.
+  shell: "mkdir {{ storage_location }}/{{ storage_name }}"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == False
+  become: true
 
-- name: copy s3 credentials
-  template: src={{ inventory_dir }}/credentials-s3.j2 dest={{ local_path}}/aws/credentials
+- name: allow read an write permission on filesystem is used.
+  shell: "chmod -R a+rw {{ storage_location }}/{{ storage_name }}"
+  when: storage_type == "filesystem" and storage_dir.stat.exists == True
+  become: true
 
 - name: copy service template for systemd
   template: src={{ inventory_dir }}/app.service.j2 dest=/lib/systemd/system/{{ app_service_name }}.service

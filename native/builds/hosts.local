@@ -50,16 +50,12 @@ frontend
 
 [all:vars]
 mode=https
-storage_type=filesystem
-storage_location=/home/fyc/
+storage_type=s3
+storage_location=us-east-1
 storage_name=corr-storage
-storage_key_id=
-storage_access_key=
-access_type=mongodb
-s3_region=us-west-2=
-s3_access_key_id=
-s3_secret_access_key=
-s3_bucket=None
+storage_key_id=AKIAIYBHDCHUCCOLLI2A
+storage_access_key=S2kS4eREWRCNEiv47INi3MlB9kE0Es0+dRczVaAN
+access_type=stormpath
 corr_env=corr-local
 corr_version=develop-0.1
 corr_repo=faical-yannick-congo/corr
