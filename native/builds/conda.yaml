@@ -27,5 +27,8 @@
   shell: "{{ conda }} create -y -n {{ corr_env }} python"
   when: corr_env_dir.stat.exists == False
 
+- name: copy requirements
+  template: src={{ inventory_dir }}/requirements.yaml dest=/tmp/requirements.yaml
+
 - name: install required corrdb packages
-  shell: "{{ conda }} env update -n {{ corr_env }} --file builds/requirements.yaml"
+  shell: "{{ conda }} env update -n {{ corr_env }} --file /tmp/requirements.yaml"
