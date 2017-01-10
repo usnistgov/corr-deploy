@@ -1,6 +1,25 @@
 - set_fact:
     frontend_path: "{{ corr_path }}/corr-view/frontend"
 
+- name: create corr-ssl directory
+  file: path=/corr-ssl state=directory
+  when: mode == "https"
+  become: true
+
+- name: copy ssl certificate for nginx
+  template: src={{ ssl_location }}/corr.crt dest=/corr-ssl/corr.crt
+  when: mode == "https"
+  become: true
+
+- name: copy ssl key for nginx
+  template: src={{ ssl_location }}/corr.key dest=/corr-ssl/corr.key
+  when: mode == "https"
+  become: true
+
+- name: allow read an execute permission on ssl.
+  shell: "chmod -R a+rx /corr-ssl"
+  become: true
+
 - name: copy nginx template
   template: src={{ inventory_dir }}/nginx-frontend.j2 dest=/etc/nginx/sites-available/{{ app_service_name }}
   become: true

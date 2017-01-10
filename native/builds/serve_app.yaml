@@ -94,6 +94,10 @@
   when: mode == "https"
   become: true
 
+- name: allow read an execute permission on ssl.
+  shell: "chmod -R a+rx /corr-ssl"
+  become: true
+
 - name: run server
   service: name={{ app_service_name }} state=restarted
   become: true
