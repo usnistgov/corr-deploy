@@ -18,6 +18,7 @@
 
 - name: allow read an execute permission on ssl.
   shell: "chmod -R a+rx /corr-ssl"
+  when: mode == "https"
   become: true
 
 - name: copy nginx template
@@ -50,5 +51,10 @@
     proto: tcp
   become: true
 
-- name: check that the view is available
+- name: check that app is up and running
   uri: url={{ test_path }} validate_certs=no
+  when: mode == "https"
+
+- name: check that app is up and running
+  uri: url={{ test_path }}
+  when: mode == "http"

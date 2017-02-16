@@ -96,6 +96,7 @@
 
 - name: allow read an execute permission on ssl.
   shell: "chmod -R a+rx /corr-ssl"
+  when: mode == "https"
   become: true
 
 - name: run server
