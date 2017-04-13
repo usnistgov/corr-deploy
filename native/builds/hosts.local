@@ -70,7 +70,7 @@ admin_password=Palin1987
 admin_fname=Faical Yannick
 admin_lname=Congo
 
-account_moderation=True
+account_moderation=False
 content_inspection=True
 
 corr_env=corr-local
@@ -83,4 +83,4 @@ ansible_ssh_private_key_file=
 ansible_connection=local
 ansible_ssh_user=fyc
 corr_location=/home/fyc/corr-src
-ssl_location=/home/fyc/corr-setup/corr-ssl
+ssl_location=/home/fyc/Documents/Projects/CoRR/corr-ssl

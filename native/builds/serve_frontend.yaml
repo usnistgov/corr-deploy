@@ -33,12 +33,12 @@
   shell: "chmod -R a+rw {{ frontend_path }}"
   become: true
 
-- name: add the www-data user to the users group
-  user:
-    group: "{{ ansible_ssh_user }}"
-    name: www-data
-    append: yes
-  become: true
+# - name: add the www-data user to the users group
+#   user:
+#     group: "{{ ansible_ssh_user }}"
+#     name: www-data
+#     append: yes
+#   become: true
 
 - name: restart nginx
   service: name=nginx state=restarted
