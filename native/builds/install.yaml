@@ -72,10 +72,30 @@
       template: src={{ inventory_dir }}/config-cloud.py.j2 dest={{ corr_path }}/corr-cloud/config.py
       tags: [install]
 
+    - name: copy admin generation template
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/tmp_admin.json.j2 dest=/tmp/tmp_admin.json
+      tags: [install]
+
+    - name: copy admin generation template
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/admin_generation.py.j2 dest={{ corr_path }}/corr-cloud/cloud/views/admin_generation.py
+      tags: [install]
+
     - name: copy stormpath config file
       when: inventory_hostname in groups['cloud']
       template: src={{ inventory_dir }}/apiKey.properties.j2 dest={{ corr_path }}/corr-cloud/apiKey.properties
       tags: [install]
+
+    - name: updating clamav
+      shell: "freshclam"
+      when: content_inspection == "True"
+      become: true
+
+    - name: starting the clamav daemon
+      shell: "service clamav-daemon start"
+      when: content_inspection == "True"
+      become: true
 
     - include: serve_db.yaml
       when: inventory_hostname in groups['db']

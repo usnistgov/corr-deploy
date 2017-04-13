@@ -32,3 +32,24 @@
 
 - name: install required corrdb packages
   shell: "{{ conda }} env update -n {{ corr_env }} --file /tmp/requirements.yaml"
+
+- name: install clamav-daemon
+  apt:
+    name: clamav-daemon
+    state: present
+    force: yes
+  become: true
+
+- name: install clamav-freshclam
+  apt:
+    name: clamav-freshclam
+    state: present
+    force: yes
+  become: true
+
+- name: install clamav-unofficial-sigs
+  apt:
+    name: clamav-unofficial-sigs
+    state: present
+    force: yes
+  become: true

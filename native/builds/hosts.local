@@ -65,6 +65,14 @@ storage_access_key=
 
 access_type=mongodb
 
+admin_email=congo@corr-root.org
+admin_password=Palin1987
+admin_fname=Faical Yannick
+admin_lname=Congo
+
+account_moderation=True
+content_inspection=True
+
 corr_env=corr-local
 corr_version=develop-0.1
 corr_repo=faical-yannick-congo/corr
