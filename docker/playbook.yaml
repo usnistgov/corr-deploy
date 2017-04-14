@@ -71,15 +71,17 @@
     - name: create ~/s3 directory
       tags: [install]
       when: >
-        inventory_hostname in groups['api'] or
-        inventory_hostname in groups['cloud']
+        storage_type == "s3" and
+        (inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud'])
       file: path={{ inventory_dir }}/builds/aws state=directory
 
     - name: copy s3 config
       tags: [install]
       when: >
-        inventory_hostname in groups['api'] or
-        inventory_hostname in groups['cloud']
+        storage_type == "s3" and
+        (inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud'])
       template: src={{ inventory_dir }}/config-s3.j2 dest={{ inventory_dir }}/builds/aws/config
 
     - name: build the latest db image
