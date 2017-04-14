@@ -11,6 +11,7 @@ dependencies:
   - node
   - gunicorn
   - pip:
+    - werkzeug
     - mongoengine==0.8.7
     - flask-mongoengine==0.7.1
     - flask-testing
@@ -21,3 +22,4 @@ dependencies:
     - uwsgi
     - flask-restful-swagger
     - simplejson
+    - clamd

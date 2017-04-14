@@ -4,11 +4,11 @@ FLASK_ENV = 'development'
 
 MONGODB_SETTINGS = {
     'db': '{{hostvars['dbhost']['db_name']}}',
-    'host': 'corrdb',#'{{ hostvars['dbhost']['ansible_ssh_host'] }}',
+    'host': '{{ hostvars['dbhost']['ansible_ssh_host'] }}',
     'port': {{hostvars['dbhost']['mapped_port']}}
 }
 
-S3_BUCKET = '{{s3_bucket}}'
+MODE = '{{mode}}'
 
 ENVIRONMENT = '{{env_type}}'
 
@@ -22,4 +22,9 @@ FILE_STORAGE = {
 
 ACCOUNT_MANAGEMENT = {
     'type': 'api-token'
+}
+
+SECURITY_MANAGEMENT = {
+    'account': '{{account_moderation}}',
+    'content': '{{content_inspection}}'
 }
