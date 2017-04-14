@@ -91,11 +91,13 @@
       shell: "freshclam"
       when: content_inspection == "True"
       become: true
+      tags: [serve]
 
     - name: starting the clamav daemon
       shell: "service clamav-daemon start"
       when: content_inspection == "True"
       become: true
+      tags: [serve]
 
     - include: serve_db.yaml
       when: inventory_hostname in groups['db']
@@ -115,4 +117,10 @@
 
     - include: serve_frontend.yaml
       when: inventory_hostname in groups['frontend']
+      tags: [serve]
+
+    - name: starting the clamav daemon
+      shell: "service clamav-daemon restart"
+      when: content_inspection == "True"
+      become: true
       tags: [serve]
