@@ -48,6 +48,16 @@
       template: src={{ inventory_dir }}/apiKey.properties.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/apiKey.properties
       tags: [install]
 
+    - name: copy admin generation template
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/tmp_admin.json.j2 dest={{ inventory_dir }}/builds/tmp_admin.json
+      tags: [install]
+
+    - name: copy admin generation template
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/admin_generation.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/cloud/views/admin_generation.py
+      tags: [install]
+
     - name: copy cloud config file
       when: inventory_hostname in groups['cloud']
       template: src={{ inventory_dir }}/config-cloud.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/config.py
@@ -87,25 +97,25 @@
     - name: build the latest db image
       tags: [install]
       when: inventory_hostname in groups['db']
-      shell: docker-compose build corrdb
+      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrdb"
       become: true
 
     - name: build the latest api image
       tags: [install]
       when: inventory_hostname in groups['api']
-      shell: docker-compose build corrapi
+      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrapi"
       become: true
 
     - name: build the latest cloud image
       tags: [install]
       when: inventory_hostname in groups['cloud']
-      shell: docker-compose build corrcloud
+      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrcloud"
       become: true
 
     - name: build the latest frontend image
       tags: [install]
       when: inventory_hostname in groups['frontend']
-      shell: docker-compose build corrview
+      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrview"
       become: true
 
     - include: serve.yaml

@@ -23,10 +23,16 @@
 - name: remove requirements
   shell: rm -rf builds/requirements.yaml
   when: >
-    inventory_hostname in groups['db'] and
-    inventory_hostname in groups['api'] and
-    inventory_hostname in groups['cloud'] and
+    inventory_hostname in groups['db'] or
+    inventory_hostname in groups['api'] or
+    inventory_hostname in groups['cloud'] or
     inventory_hostname in groups['frontend'] and
+    build_folder.stat.exists == True
+
+- name: remove tmp_admin
+  shell: rm -rf builds/tmp_admin.json
+  when: >
+    inventory_hostname in groups['cloud'] and
     build_folder.stat.exists == True
 
 - name: remove Dockerfile Db

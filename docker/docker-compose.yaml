@@ -9,7 +9,7 @@ services:
     expose:
      - "27017"
     volumes:
-     - /data/db:/data/db
+     - /var/lib/mongodb:/data/db
   corrapi:
     build:
         context: ./builds
@@ -17,7 +17,7 @@ services:
     ports:
      - "5100:5100"
     volumes:
-     - /corr-storage:/home/corradmin/corr-storage
+     - /home/fyc/corr-storage:/home/corradmin/corr-storage
     depends_on:
      - "corrdb"
   corrcloud:
@@ -27,7 +27,7 @@ services:
     ports:
      - "5200:5200"
     volumes:
-     - /corr-storage:/home/corradmin/corr-storage
+     - /home/fyc/corr-storage:/home/corradmin/corr-storage
     expose:
      - "5200"
     depends_on:

@@ -5,7 +5,7 @@ FLASK_ENV = 'development'
 
 MONGODB_SETTINGS = {
     'db': '{{hostvars['dbhost']['db_name']}}',
-    'host': '{{ hostvars['dbhost']['ansible_ssh_host'] }}',
+    'host': 'corrdb',
     'port': {{hostvars['dbhost']['mapped_port']}}
 }
 
@@ -35,7 +35,7 @@ ACCOUNT_MANAGEMENT = {
 
 SECURITY_MANAGEMENT = {
     'account': {{account_moderation}},
-    'content': {{content_inspection}}
+    'content': '{{content_inspection}}'
 }
 
 ENVIRONMENT = '{{env_type}}'

@@ -23,3 +23,4 @@ dependencies:
     - flask-restful-swagger
     - simplejson
     - clamd
+    - docker-compose

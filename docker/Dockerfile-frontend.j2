@@ -39,8 +39,12 @@ RUN {{ conda }} update -y conda
 RUN {{ conda }} create -y -n {{ corr_env }} python=3.4
 RUN {{ conda }} env update -n {{ corr_env }} --file {{ local_path }}/requirements.yaml
 
+{{ "RUN apt-get install -y clamav-daemon" if mode == "https" else "" }}
+{{ "RUN apt-get install -y clamav-freshclam" if mode == "https" else "" }}
+{{ "RUN apt-get install -y clamav-unofficial-sigs" if mode == "https" else "" }}
+
 WORKDIR {{ local_path }}/corr/corr-view/frontend
 
 EXPOSE {{ mapped_port }}
 
-CMD source activate corr; sudo jekyll serve --watch --port {{hostvars['frontendhost']['mapped_port']}} --host {{ hostvars['frontendhost']['ansible_ssh_host'] }}
+CMD {{ "freshclam; service clamav-daemon start; " if mode == "https" else "" }}source activate corr; sudo jekyll serve --watch --port {{hostvars['frontendhost']['mapped_port']}} --host {{ hostvars['frontendhost']['ansible_ssh_host'] }}

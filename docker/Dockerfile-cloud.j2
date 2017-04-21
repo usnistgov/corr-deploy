@@ -20,6 +20,9 @@ RUN passwd -d {{ docker_user }}
 RUN adduser {{ docker_user }} sudo
 RUN echo '{{ docker_user }} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+COPY tmp_admin.json /tmp/tmp_admin.json
+RUN chmod a+rwx /tmp/tmp_admin.json
+
 USER {{ docker_user }}
 WORKDIR {{ local_path }}
 
@@ -32,12 +35,16 @@ RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
 
 RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/requirements.yaml
 
-RUN wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh {{ local_path }}/Miniconda-latest-Linux-x86_64.sh
-RUN bash {{ local_path }}/Miniconda-latest-Linux-x86_64.sh -b -p {{ anaconda_path }}
+RUN wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+RUN bash Miniconda-latest-Linux-x86_64.sh -b -p {{ anaconda_path }}
 RUN echo 'export PATH="{{ local_path }}/anaconda/bin:$PATH"'>> {{ local_path }}/.bashrc
 RUN {{ conda }} update -y conda
 RUN {{ conda }} create -y -n {{ corr_env }} python=3.4
 RUN {{ conda }} env update -n {{ corr_env }} --file {{ local_path }}/requirements.yaml
+
+{{ "RUN apt-get install -y clamav-daemon" if mode == "https" else "" }}
+{{ "RUN apt-get install -y clamav-freshclam" if mode == "https" else "" }}
+{{ "RUN apt-get install -y clamav-unofficial-sigs" if mode == "https" else "" }}
 
 RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
 
@@ -51,4 +58,4 @@ EXPOSE {{ mapped_port }}
 
 VOLUME {{ local_path }}/corr-storage
 
-CMD {{ env_path }}/python run.py --host {{ hostvars['cloudhost']['ansible_ssh_host'] }} --port {{hostvars['cloudhost']['mapped_port']}}
+CMD {{ "freshclam; service clamav-daemon start; " if mode == "https" else "" }}{{ env_path }}/python run.py --host {{ hostvars['cloudhost']['ansible_ssh_host'] }} --port {{hostvars['cloudhost']['mapped_port']}}
