@@ -1,6 +1,6 @@
 - name: restart the db container
   when: inventory_hostname in groups['db']
-  shell: /home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose restart -t 20 corrdb
+  shell: docker-compose restart -t 20 corrdb
   become: true
 
 - name: wait for mongodb to become available
@@ -12,15 +12,15 @@
 
 - name: restart the api container
   when: inventory_hostname in groups['api']
-  shell: /home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose restart -t 20 corrapi
+  shell: docker-compose restart -t 20 corrapi
   become: true
 
 - name: restart the cloud container
   when: inventory_hostname in groups['cloud']
-  shell: /home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose restart -t 20 corrcloud
+  shell: docker-compose restart -t 20 corrcloud
   become: true
 
 - name: restart the frontend container
   when: inventory_hostname in groups['frontend']
-  shell: /home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose restart -t 20 corrview
+  shell: docker-compose restart -t 20 corrview
   become: true

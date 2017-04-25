@@ -97,25 +97,25 @@
     - name: build the latest db image
       tags: [install]
       when: inventory_hostname in groups['db']
-      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrdb"
+      shell: "docker-compose build corrdb"
       become: true
 
     - name: build the latest api image
       tags: [install]
       when: inventory_hostname in groups['api']
-      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrapi"
+      shell: "docker-compose build corrapi"
       become: true
 
     - name: build the latest cloud image
       tags: [install]
       when: inventory_hostname in groups['cloud']
-      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrcloud"
+      shell: "docker-compose build corrcloud"
       become: true
 
     - name: build the latest frontend image
       tags: [install]
       when: inventory_hostname in groups['frontend']
-      shell: "/home/{{ ansible_ssh_user }}/{{ anacondadir }}/envs/{{ corr_env }}/bin/docker-compose build corrview"
+      shell: "docker-compose build corrview"
       become: true
 
     - include: serve.yaml
