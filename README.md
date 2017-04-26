@@ -59,6 +59,9 @@ This toolkit allows a granular deployment of the different components of CoRR:
 db, api, cloud and frontend.
 The components can be deployed in the same host or in four different hosts.
 
+Note: Before selecting your path of installation, please go to setup to make
+the appropriate [Setup README](setup/README.md) needed for your option.
+
 ## Native Linux Management
 
 This management is based on a linux ready configuration with ansible.
