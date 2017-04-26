@@ -121,8 +121,8 @@ Also make sure the containers are on the right port in this order:
     $ corrapi: 5100
     $ corrcloud: 5200
     $ corrview: 5000
-Finally verify that the docker deamon is running on the IP Address: 10.200.94.205
-To check the status of the palftorm go to: http://10.200.94.205.
+Finally verify that the docker deamon is running on the IP Address: 192.168.99.100
+To check the status of the palftorm go to: http://192.168.99.100:5000.
 
 
 ## Developeur setup
