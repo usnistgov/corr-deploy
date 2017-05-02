@@ -88,7 +88,6 @@ env_type=development
 ansible_ssh_private_key_file=
 ansible_connection=local
 ansible_ssh_user=fyc
-ansible_ssh_home=/Users
 docker_user=corradmin
 corr_location=/Users/fyc/corr-src
 ssl_location=/Users/fyc/Documents/Projects/CoRR/corr-ssl

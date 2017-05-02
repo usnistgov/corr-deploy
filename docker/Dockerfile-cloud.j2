@@ -57,5 +57,6 @@ WORKDIR {{ local_path }}/corr/corr-cloud
 EXPOSE {{ mapped_port }}
 
 VOLUME {{ local_path }}/corr-storage
+# VOLUME /tmp
 
 CMD {{ "freshclam; service clamav-daemon start; " if mode == "https" else "" }}{{ env_path }}/python run.py --host {{ hostvars['cloudhost']['ansible_ssh_host'] }} --port {{hostvars['cloudhost']['mapped_port']}}

@@ -9,8 +9,6 @@ MONGODB_SETTINGS = {
     'port': {{hostvars['dbhost']['mapped_port']}}
 }
 
-# 'host': 'corrdb'
-
 MODE = '{{mode}}'
 
 VIEW_SETTINGS = {
@@ -18,14 +16,10 @@ VIEW_SETTINGS = {
     'port': {{hostvars['frontendhost']['mapped_port']}},
 }
 
-# 'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}'
-
 API_SETTINGS = {
     'host': '192.168.99.100',
     'port': {{hostvars['apihost']['mapped_port']}},
 }
-
-# 'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}'
 
 FILE_STORAGE = {
     'type': '{{storage_type}}',
