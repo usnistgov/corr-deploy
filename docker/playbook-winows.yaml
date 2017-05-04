@@ -36,7 +36,7 @@
     - name: copy api config file
       tags: [install]
       when: inventory_hostname in groups['api']
-      template: src={{ inventory_dir }}/config-api.py.j2 dest={{ inventory_dir }}/builds/corr/corr-api/config.py
+      template: src={{ inventory_dir }}/windows/config-api.py.j2 dest={{ inventory_dir }}/builds/corr/corr-api/config.py
 
     - name: generate Dockerfile-cloud file.
       tags: [install]
@@ -60,7 +60,7 @@
 
     - name: copy cloud config file
       when: inventory_hostname in groups['cloud']
-      template: src={{ inventory_dir }}/config-cloud.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/config.py
+      template: src={{ inventory_dir }}/windows/config-cloud.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/config.py
       tags: [install]
 
     - name: generate Dockerfile-frontend file.
@@ -82,7 +82,6 @@
       tags: [install]
       when: >
         storage_type == "s3" and
-        storage_key_id != "" and
         (inventory_hostname in groups['api'] or
         inventory_hostname in groups['cloud'])
       file: path={{ inventory_dir }}/builds/aws state=directory
@@ -91,19 +90,9 @@
       tags: [install]
       when: >
         storage_type == "s3" and
-        storage_key_id != "" and
         (inventory_hostname in groups['api'] or
         inventory_hostname in groups['cloud'])
       template: src={{ inventory_dir }}/config-s3.j2 dest={{ inventory_dir }}/builds/aws/config
-
-    - name: copy s3 credentials
-      tags: [install]
-      when: >
-        storage_type == "s3" and
-        storage_key_id != "" and
-        (inventory_hostname in groups['api'] or
-        inventory_hostname in groups['cloud'])
-      template: src={{ inventory_dir }}/credentials-s3.j2 dest={{ inventory_dir }}/builds/aws/credentials
 
     - name: build the latest db image
       tags: [install]

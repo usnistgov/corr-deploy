@@ -5,27 +5,21 @@ FLASK_ENV = 'development'
 
 MONGODB_SETTINGS = {
     'db': '{{hostvars['dbhost']['db_name']}}',
-    'host': '192.168.99.100',
+    'host': 'corrdb',
     'port': {{hostvars['dbhost']['mapped_port']}}
 }
-
-# 'host': 'corrdb'
 
 MODE = '{{mode}}'
 
 VIEW_SETTINGS = {
-    'host': '192.168.99.100',
+    'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}',
     'port': {{hostvars['frontendhost']['mapped_port']}},
 }
 
-# 'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}'
-
 API_SETTINGS = {
-    'host': '192.168.99.100',
+    'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}',
     'port': {{hostvars['apihost']['mapped_port']}},
 }
-
-# 'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}'
 
 FILE_STORAGE = {
     'type': '{{storage_type}}',
