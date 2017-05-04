@@ -6,7 +6,7 @@
 
 - name: shuting down api container
   when: inventory_hostname in groups['api']
-  shell: docker-compose stop corrapi
+  shell: docker-compose stop docker_corrapi
   become: true
   register: output
 

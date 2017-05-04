@@ -87,6 +87,33 @@
       template: src={{ inventory_dir }}/apiKey.properties.j2 dest={{ corr_path }}/corr-cloud/apiKey.properties
       tags: [install]
 
+    - name: create ~/s3 directory
+      tags: [install]
+      when: >
+        storage_type == "s3" and
+        storage_key_id != "" and
+        (inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud'])
+      file: path={{ local_path }}/aws state=directory
+
+    - name: copy s3 config
+      tags: [install]
+      when: >
+        storage_type == "s3" and
+        storage_key_id != "" and
+        (inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud'])
+      template: src={{ inventory_dir }}/config-s3.j2 dest={{ local_path }}/aws/config
+
+    - name: copy s3 credentials
+      tags: [install]
+      when: >
+        storage_type == "s3" and
+        storage_key_id != "" and
+        (inventory_hostname in groups['api'] or
+        inventory_hostname in groups['cloud'])
+      template: src={{ inventory_dir }}/credentials-s3.j2 dest={{ local_path }}/aws/credentials
+
     - name: updating clamav
       shell: "freshclam"
       when: content_inspection == "True"

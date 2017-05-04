@@ -3,4 +3,5 @@ hosts.dev
 docker/builds
 data
 corr-storage
+corr-public-hosts.aws
 .DS_Store
