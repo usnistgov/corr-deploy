@@ -118,6 +118,9 @@
       shell: "docker-compose build corrview"
       become: true
 
+    - include: push.yaml
+      tags: [push]
+
     - include: serve.yaml
       tags: [serve]
 

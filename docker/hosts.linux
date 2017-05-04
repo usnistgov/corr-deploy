@@ -89,5 +89,7 @@ ansible_ssh_private_key_file=
 ansible_connection=local
 ansible_ssh_user=fyc
 docker_user=corradmin
+docker_hub=palingwende
+images_prefix=linux
 corr_location=/home/fyc/corr-src
 ssl_location=/home/fyc/Documents/Projects/CoRR/corr-ssl

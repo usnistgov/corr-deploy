@@ -1,0 +1,47 @@
+- name: tagging db container
+  shell: "docker tag docker_corrdb {{ docker_hub }}/{{ images_prefix }}_corrdb"
+  when: inventory_hostname in groups['db']
+  become: true
+  register: output
+
+- name: pushing db container
+  shell: "docker push {{ docker_hub }}/{{ images_prefix }}_corrdb:latest"
+  when: inventory_hostname in groups['db']
+  become: true
+  register: output
+
+- name: tagging api container
+  shell: "docker tag docker_corrapi {{ docker_hub }}/{{ images_prefix }}_corrapi"
+  when: inventory_hostname in groups['api']
+  become: true
+  register: output
+
+- name: pushing api container
+  shell: "docker push {{ docker_hub }}/{{ images_prefix }}_corrapi:latest"
+  when: inventory_hostname in groups['api']
+  become: true
+  register: output
+
+- name: tagging cloud container
+  shell: "docker tag docker_corrcloud {{ docker_hub }}/{{ images_prefix }}_corrcloud"
+  when: inventory_hostname in groups['cloud']
+  become: true
+  register: output
+
+- name: pushing cloud container
+  shell: "docker push {{ docker_hub }}/{{ images_prefix }}_corrcloud:latest"
+  when: inventory_hostname in groups['cloud']
+  become: true
+  register: output
+
+- name: tagging frontend container
+  shell: "docker tag docker_corrview {{ docker_hub }}/{{ images_prefix }}_corrview"
+  when: inventory_hostname in groups['frontend']
+  become: true
+  register: output
+
+- name: pushing frontend container
+  shell: "docker push {{ docker_hub }}/{{ images_prefix }}_corrview:latest"
+  when: inventory_hostname in groups['frontend']
+  become: true
+  register: output
