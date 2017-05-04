@@ -90,6 +90,6 @@ ansible_connection=local
 ansible_ssh_user=fyc
 docker_user=corradmin
 docker_hub=palingwende
-images_prefix=osx
+images_prefix=vbox
 corr_location=/Users/fyc/corr-src
 ssl_location=/Users/fyc/Documents/Projects/CoRR/corr-ssl

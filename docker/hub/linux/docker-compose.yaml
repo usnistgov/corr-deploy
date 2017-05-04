@@ -1,0 +1,34 @@
+version: '2'
+services:
+  corrdb:
+    image: palingwende/linux_corrdb
+    ports:
+     - "27017:27017"
+    expose:
+     - "27017"
+    volumes:
+     - /data/db:/data/db
+  corrapi:
+    image: palingwende/linux_corrapi
+    ports:
+     - "5100:5100"
+    volumes:
+     - /home/fyc/corr-storage:/home/corradmin/corr-storage
+    depends_on:
+     - "corrdb"
+  corrcloud:
+    image: palingwende/linux_corrcloud
+    ports:
+     - "5200:5200"
+    volumes:
+     - /home/fyc/corr-storage:/home/corradmin/corr-storage
+    expose:
+     - "5200"
+    depends_on:
+     - "corrdb"
+  corrview:
+    image: palingwende/linux_corrview
+    ports:
+     - "5000:5000"
+    depends_on:
+     - "corrcloud"
