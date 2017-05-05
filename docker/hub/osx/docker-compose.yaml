@@ -1,7 +1,7 @@
 version: '2'
 services:
   corrdb:
-    image: palingwende/osx_corrdb
+    image: palingwende/native_corrdb
     ports:
      - "27017:27017"
     expose:
@@ -9,7 +9,7 @@ services:
     volumes:
      - /data/db:/data/db
   corrapi:
-    image: palingwende/osx_corrapi
+    image: palingwende/native_corrapi
     ports:
      - "5100:5100"
     volumes:
@@ -17,7 +17,7 @@ services:
     depends_on:
      - "corrdb"
   corrcloud:
-    image: palingwende/osx_corrcloud
+    image: palingwende/native_corrcloud
     ports:
      - "5200:5200"
     volumes:
@@ -27,7 +27,7 @@ services:
     depends_on:
      - "corrdb"
   corrview:
-    image: palingwende/osx_corrview
+    image: palingwende/native_corrview
     ports:
      - "5000:5000"
     depends_on:
