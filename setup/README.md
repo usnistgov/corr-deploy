@@ -60,43 +60,55 @@ You will have to unzip all the compressed folders and place them in a location t
 you will easily recall during these setup.
 If you are using the native installation, you will have to replace the paths in the 
 right variables in the hosts.local file or its copy in builds.
+
     $ corr_location=path/to/corr-src
     $ ssl_location=path/to/corr-ssl
     $ storage_location=parent/path/to/corr-storage
+
 Unzip tmp and copy the values in the json file inside into the following variables:
+
     $ admin_email=congo@corr-root.org
     $ admin_password=Palin1987
     $ admin_fname=Faical Yannick
     $ admin_lname=Congo
+
 In the mongodb.conf.j2 you will be able to put the path of data/db instead of the 
 default dbpath, /var/lib/mongodb.
 Finally if you would like to enforce account moderation by admin and content
 inspection through anti-virus, please change the values of the following variables
 to True
+
     $ account_moderation=False
     $ content_inspection=True
+
 From this point you can perform the install and serve instructions in native.
 If you ar using the docker installation, depending on the operating system you will
 need to follow different directions.
 For Mac OSX/Linux, you can proceed first as what was done in native but with the hosts.docker
 file. You will have to make sure you have docker and docker-compose installed.
 Also make sure docker is running:
+
     $ sudo service docker start
+
 In this first case for OSX you can follow the docker installation steps.
 The other alternative with OSX/Linux systems is to use the docker images right away
 from docker hub. In this can You will have to follow the native setup example by placing
 the files in an easy to recall location. Then you will have to open hub/docker-compose.yml
 and provide the right VOLUME paths:
+
     $ /path/to/data/db:/data/db
     $ /path/to/corr-storage:/home/corradmin/corr-storage
+
 Once this is done you will have to invoke docker-compose in the following order.
 First you will need to pull the images:
     $ docker-compose pull
 Then you will be able to run the containers:
+
     $ docker-compose up -d corrdb
     $ docker-compose up -d corrapi
     $ docker-compose up -d corrcloud
     $ docker-compose up -d corrview
+
 You will have to give enough time to corrdb to start before carrying on with
 corrapi and corrcloud. Also you will have to give enough time to corrcloud
 to startup before starting corrview.
@@ -108,26 +120,32 @@ In a non linux/OSX system like windows we recommend pulling the images
 from docker hub. Secondly place the unziped files in an accessible location on
 your computer. We recommend that you download and install docker-toolbox.
 Use Kitematic to manage your containers. To download your images look for:
+
     $ palingwende/win_corrdb
     $ palingwende/win_corrapi
     $ palingwende/win_corrcloud
     $ palingwende/win_corrview
+
 Then for each of them provide the right VOLUME path:
+
     $ /path/to/data/db:/data/db for corrdb
     $ /path/to/corr-storage:/home/corradmin/corr-storage for corrcloud and corrapi
     $ /path/to/tmp/tmp_admin.json:/tmp/tmp_admin.json
+
 Also make sure the containers are on the right port in this order:
+
     $ corrdb: 27017
     $ corrapi: 5100
     $ corrcloud: 5200
     $ corrview: 5000
+
 Finally verify that the docker deamon is running on the IP Address: 192.168.99.100
 To check the status of the palftorm go to: http://192.168.99.100:5000.
 
 
-## Developeur setup
+## Developer setup
 
-As a developeur you will be able to change the deployment content and install corr
+As a developer you will be able to change the deployment content and install corr
 with more constum features to your use case. CoRR can only be development properly
  at least for the deployment mechanism only within a Linux/OSX environment.
 This is due to facts like issues with ansible and docker in other systems to manage

@@ -106,6 +106,7 @@ html_theme_options = {
     'navbar_title': "*",
     'navbar_site_name': "More",
     'navbar_links': [
+        ("Setup", "rst/setup/README.html", True),
         ("Native", "rst/native/README.html", True),
         ("Docker", "rst/docker/README.html", True),
         ("Github", "https://github.com/usnistgov/corr-deploy/", True),
@@ -303,6 +304,7 @@ for directory in [rst_directory, native_directory, docker_directory]:
 
 files_to_copy = (
     'README.md',
+    'setup/README.md',
     'native/README.md',
     'docker/README.md',
     'LICENSE'

@@ -11,7 +11,7 @@ CoRR &ndash; The Cloud of Reproducible Records
 </h1>
 
 <p align="center"><sup><strong>
-See the live instance at <a href="http://corr-root.org/">corr-root.org:5000</a>.
+See the live instance at <a href="http://corr-root.org/">corr-root.org</a>.
 </strong></sup></p>
 
 <p align="center">
