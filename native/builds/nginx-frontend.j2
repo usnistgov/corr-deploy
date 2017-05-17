@@ -1,5 +1,5 @@
 server {
-	client_max_body_size 100m;
+	client_max_body_size 10G;
 	{{ "ssl_certificate     /corr-ssl/corr.crt;" if mode == "https" else "" }}
 	{{ "ssl_certificate_key /corr-ssl/corr.key;" if mode == "https" else "" }}
     {{ "listen "~mapped_port~" ssl;" if mode == "https" else "listen "~mapped_port~";" }}
