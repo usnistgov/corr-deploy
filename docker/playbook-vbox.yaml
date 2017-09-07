@@ -72,7 +72,7 @@
     - name: copy frontend config file
       tags: [install]
       when: inventory_hostname in groups['frontend']
-      template: src={{ inventory_dir }}/config-frontend.js.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config.js
+      template: src={{ inventory_dir }}/virtualbox/config-frontend.js.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config.js
 
     - name: copy requirements.
       tags: [install]
