@@ -6,6 +6,11 @@ import simplejson as json
 import os
 
 def check_admin(email=None):
+    #for admin in UserModel.objects(group="admin"):
+    #    profile = ProfileModel.objects(user=admin).first()
+    #    if profile:
+    #        profile.delete
+    #    admin.delete()
     if email:
         account = UserModel.objects(email=email).first()
         if account and account.group == "admin":

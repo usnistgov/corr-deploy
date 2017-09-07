@@ -123,4 +123,9 @@
   become: true
 
 - name: check that app is up and running
-  uri: url={{ test_path }} validate_certs=no
+  uri: url={{ test_path }} validate_certs=no timeout=120
+  when: mode == "https"
+
+- name: check that app is up and running
+  uri: url={{ test_path }} timeout=120
+  when: mode == "http"
