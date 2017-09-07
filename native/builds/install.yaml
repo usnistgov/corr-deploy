@@ -62,6 +62,11 @@
       when: inventory_hostname in groups['frontend']
       template: src={{ inventory_dir }}/config-frontend.js.j2 dest={{ corr_path }}/corr-view/frontend/js/config.js
 
+    - name: copy frontend custom file
+      tags: [install]
+      when: inventory_hostname in groups['frontend']
+      template: src={{ inventory_dir }}/custom.json.j2 dest={{ corr_path }}/corr-view/frontend/xml/custom.json
+
     - name: copy api config file
       tags: [install]
       when: inventory_hostname in groups['api']

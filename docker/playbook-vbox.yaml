@@ -74,6 +74,11 @@
       when: inventory_hostname in groups['frontend']
       template: src={{ inventory_dir }}/virtualbox/config-frontend.js.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config.js
 
+    - name: copy frontend custom file
+      tags: [install]
+      when: inventory_hostname in groups['frontend']
+      template: src={{ inventory_dir }}/custom.json.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/xml/custom.json
+    
     - name: copy requirements.
       tags: [install]
       shell: cp requirements.yaml builds

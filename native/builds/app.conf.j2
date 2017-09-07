@@ -4,4 +4,4 @@ start on (filesytem)
 
 chdir {{ corr_path }}
 
-exec {{ env_path }}/gunicorn -c {{ local_path }}/.config/{{ gunicorn_config_file }} --bind unix:{{ socket_file }} run:app
+exec {{ env_path }}/gunicorn -c {{ local_path }}/.config/{{ gunicorn_config_file }} --debug --timeout 120 --bind unix:{{ socket_file }} run:app
