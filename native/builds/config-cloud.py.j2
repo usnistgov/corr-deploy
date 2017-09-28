@@ -12,12 +12,12 @@ MONGODB_SETTINGS = {
 MODE = '{{mode}}'
 
 VIEW_SETTINGS = {
-    'host': '{{ hostvars['frontendhost']['ansible_ssh_host'] }}',
+    'host': '{{ hostvars['frontendhost']['exposed_host'] }}',
     'port': {{hostvars['frontendhost']['mapped_port']}},
 }
 
 API_SETTINGS = {
-    'host': '{{ hostvars['apihost']['ansible_ssh_host'] }}',
+    'host': '{{ hostvars['apihost']['exposed_host'] }}',
     'port': {{hostvars['apihost']['mapped_port']}},
 }
 

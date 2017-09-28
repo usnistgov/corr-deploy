@@ -1,5 +1,5 @@
 var config = {
-    host: '{{ hostvars['cloudhost']['ansible_ssh_host'] }}',
+    host: '{{ hostvars['cloudhost']['exposed_host'] }}',
     port: {{hostvars['cloudhost']['mapped_port']}},
     mode: '{{mode}}',
     load_xml: function(xml_location, params, succeed, failed){
