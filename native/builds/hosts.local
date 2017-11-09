@@ -2,6 +2,8 @@
 dbhost ansible_ssh_host=localhost
 
 [db:vars]
+exposed_host=127.0.0.1
+bind_hosts=127.0.0.1
 db_name=corr-integrate
 mapped_port=27017
 
@@ -9,6 +11,7 @@ mapped_port=27017
 apihost ansible_ssh_host=localhost
 
 [api:vars]
+exposed_host=0.0.0.0
 mapped_port=5100
 test_path=https://0.0.0.0:5100/corr/api/v0.1/public/users
 app_service_name=corrapi
@@ -21,6 +24,7 @@ gunicorn_config_file=corr_config_api.py
 cloudhost ansible_ssh_host=localhost
 
 [cloud:vars]
+exposed_host=0.0.0.0
 stormpath_id=4ZH7A041SC938W0DK25JX3CIA
 stormpath_secret=ZA6Fan22PeP+pKtEZfilXJsXjZkUWrw8u7WeIBhTVgY
 stormpath_app=corr-dev
@@ -36,8 +40,9 @@ gunicorn_config_file=corr_config_cloud.py
 frontendhost ansible_ssh_host=localhost
 
 [frontend:vars]
-mapped_port=5000
-test_path=https://0.0.0.0:5000/
+exposed_host=0.0.0.0
+mapped_port=443
+test_path=https://0.0.0.0:443/
 app_service_name=corrfrontend
 
 [all:children]
@@ -70,12 +75,12 @@ admin_password=Palin1987
 admin_fname=Faical Yannick
 admin_lname=Congo
 
-account_moderation=False
+account_moderation=True
 content_inspection=True
 
 corr_env=corr-local
-corr_version=develop-0.1
-corr_repo=faical-yannick-congo/corr
+corr_version=master
+corr_repo=usnistgov/corr
 anacondadir=anaconda
 debug=True
 env_type=development
@@ -83,7 +88,8 @@ ansible_ssh_private_key_file=
 ansible_connection=local
 ansible_ssh_user=fyc
 corr_location=/home/fyc/corr-src
-ssl_location=/home/fyc/Documents/Projects/CoRR/corr-ssl
+ssl_certif=/corr-ssl/corr.crt
+ssl_key=/corr-ssl/corr.key
 
 # Instance custom fields
 platform_name=NIST Demo Instance
