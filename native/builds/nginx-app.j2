@@ -1,14 +1,34 @@
-server {
-	client_max_body_size 10G;
-	proxy_connect_timeout 75s;
-	proxy_read_timeout 300s;
-  {{ "ssl_certificate     "~ssl_location~"/corr.crt;" if mode == "https" else "" }}
-	{{ "ssl_certificate_key "~ssl_location~"/corr.key;" if mode == "https" else "" }}
-    {{ "listen "~mapped_port~" ssl;" if mode == "https" else "listen "~mapped_port~";" }}
-    server_name 0.0.0.0 localhost {{ ansible_ssh_host }};
+{{
+"server {
+    client_max_body_size 10G;
+    proxy_connect_timeout 75s;
+    proxy_read_timeout 300s;
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection '1; mode=block';
+    listen "~mapped_port~" ssl;
+    ssl_certificate "~ssl_certif~";
+    ssl_certificate_key "~ssl_key~";
+
+    server_name "~exposed_host~";
+    add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload;';
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:{{ socket_file }};
-        }
-}
+        proxy_pass http://unix:"~socket_file~";
+    }
+}" if mode == "https" else "
+server {
+    client_max_body_size 10G;
+    proxy_connect_timeout 75s;
+    proxy_read_timeout 300s;
+    add_header X-Frame-Options SAMEORIGIN;
+    listen "~mapped_port~";
+
+    server_name "~exposed_host~";
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:"~socket_file~";
+    }
+}"
+}}

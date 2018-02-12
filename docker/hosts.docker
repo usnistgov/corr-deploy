@@ -65,10 +65,10 @@ storage_access_key=
 
 access_type=mongodb
 
-admin_email=congo@corr-root.org
-admin_password=Palin1987
-admin_fname=Faical Yannick
-admin_lname=Congo
+admin_email=admin@domain.org
+admin_password=Password2018!
+admin_fname=Admin
+admin_lname=CoRR
 
 account_moderation=True
 content_inspection=False
@@ -86,7 +86,8 @@ docker_user=corradmin
 docker_hub=palingwende
 images_prefix=vbox
 corr_location=/corr-src-0.1
-ssl_location=/corr-ssl
+ssl_certif=/corr-ssl/corr.crt
+ssl_key=/corr-ssl/corr.key
 
 # Instance custom fields
 platform_name=NIST Demo Instance
