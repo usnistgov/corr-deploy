@@ -15,27 +15,27 @@ See a live instance at <a href="https://corr-root.org/">corr-root.org</a>.
 </strong></sup></p>
 
 <p align="center">
-<a href="https://travis-ci.org/usnistgov/corr-deploy" target="_blank">
-<img src="https://travis-ci.org/usnistgov/corr-deploy.svg?branch=master"
+<a href="https://travis-ci.org/faical-yannick-congo/corr-deploy" target="_blank">
+<img src="https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master"
 alt="Travis CI">
 </a>
-<a href="https://github.com/usnistgov/corr-deploy/issues" target="_blank">
-<img src="http://githubbadges.herokuapp.com/usnistgov/corr-deploy/issues.svg?style=flat-square"
+<a href="https://github.com/faical-yannick-congo/corr-deploy/issues" target="_blank">
+<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/issues.svg?style=flat-square"
 alt="Github Issues">
 </a>
-<a href="https://github.com/fusnistgov/corr-deploy/pulls" target="_blank">
+<a href="https://github.com/faical-yannick-congo/corr-deploy/pulls" target="_blank">
 <img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/pulls.svg?style=flat-square"
 alt="Github Pull Requests">
 </a>
-<a href="http://mybinder.org/repo/fusnistgov/corr-deploy" target="_blank">
+<a href="http://mybinder.org/repo/faical-yannick-congo/corr-deploy" target="_blank">
 <img src="http://mybinder.org/badge.svg"
 alt="Binder">
 </a>
-<a href="http://corr-deploy.readthedocs.io/en/latest/?badge=latest" target="_blank">
+<a href="http://corr-deploy.readthedocs.io/en/master/?badge=latest" target="_blank">
 <img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest"
 alt="Reathedocs">
 </a>
-<a href="https://gitter.im/usnistgov/corr">
+<a href="https://gitter.im/faical-yannick-congo/corr">
 <img src="https://img.shields.io/gitter/room/gitterHQ/gitter.svg" alt="Gitter Chat" height="18">
 </a>
 <a href="https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE">
