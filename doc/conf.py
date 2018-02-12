@@ -291,7 +291,6 @@ def setup(app):
             'auto_toc_tree_section': 'Contents',
             }, True)
     app.add_transform(AutoStructify)
-    app.add_stylesheet('_static/corr-deploy.css')
 
 import shutil, os, glob
 
