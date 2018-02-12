@@ -15,19 +15,19 @@ See a live instance at <a href="https://corr-root.org/">corr-root.org</a>.
 </strong></sup></p>
 
 <p align="center">
-<a href="https://travis-ci.org/faical-yannick-congo/corr-deploy" target="_blank">
-<img src="https://travis-ci.org/faical-yannick-congo/corr-deploy.svg?branch=master"
+<a href="https://travis-ci.org/usnistgov/corr-deploy" target="_blank">
+<img src="https://travis-ci.org/usnistgov/corr-deploy.svg?branch=master"
 alt="Travis CI">
 </a>
-<a href="https://github.com/faical-yannick-congo/corr-deploy/issues" target="_blank">
-<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/issues.svg?style=flat-square"
+<a href="https://github.com/usnistgov/corr-deploy/issues" target="_blank">
+<img src="http://githubbadges.herokuapp.com/usnistgov/corr-deploy/issues.svg?style=flat-square"
 alt="Github Issues">
 </a>
-<a href="https://github.com/faical-yannick-congo/corr-deploy/pulls" target="_blank">
-<img src="http://githubbadges.herokuapp.com/faical-yannick-congo/corr-deploy/pulls.svg?style=flat-square"
+<a href="https://github.com/usnistgov/corr-deploy/pulls" target="_blank">
+<img src="http://githubbadges.herokuapp.com/usnistgov/corr-deploy/pulls.svg?style=flat-square"
 alt="Github Pull Requests">
 </a>
-<a href="http://mybinder.org/repo/faical-yannick-congo/corr-deploy" target="_blank">
+<a href="http://mybinder.org/repo/usnistgov/corr-deploy" target="_blank">
 <img src="http://mybinder.org/badge.svg"
 alt="Binder">
 </a>
@@ -35,10 +35,10 @@ alt="Binder">
 <img src="https://readthedocs.org/projects/corr-deploy/badge/?version=latest"
 alt="Reathedocs">
 </a>
-<a href="https://gitter.im/faical-yannick-congo/corr">
+<a href="https://gitter.im/usnistgov/corr">
 <img src="https://img.shields.io/gitter/room/gitterHQ/gitter.svg" alt="Gitter Chat" height="18">
 </a>
-<a href="https://github.com/faical-yannick-congo/corr-deploy/blob/master/LICENSE">
+<a href="https://github.com/usnistgov/corr-deploy/blob/master/LICENSE">
 <img src="https://img.shields.io/badge/license-mit-blue.svg" alt="License" height="18">
 </a>
 </p>
@@ -56,7 +56,7 @@ db, api, cloud and frontend.
 The components can be deployed in the same host or in four different hosts.
 
 Note: Before selecting your path of installation, please go to setup to make
-the appropriate [Setup README](https://github.com/faical-yannick-congo/corr-deploy/blob/master/setup/README.md) needed for your option.
+the appropriate [Setup README](https://github.com/usnistgov/corr-deploy/blob/master/setup/README.md) needed for your option.
 
 ## Native Linux Management
 
@@ -76,7 +76,7 @@ Also these services except for [Mongodb](https://docs.mongodb.com/) are all wrap
 behind [Gunicorn](http://docs.gunicorn.org/en/latest/index.html) for corrapi and corrcloud and behind [Jekyll](https://jekyllrb.com/docs/home/) for the frontend.
 The CoRR platform instance also handles the [ufw](https://help.ubuntu.com/community/UFW) firewall configurations.
 
-To learn the specifics please refer to the [Native README](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/README.md)
+To learn the specifics please refer to the [Native README](https://github.com/usnistgov/corr-deploy/blob/master/native/README.md)
 
 ## Docker based Management
 
@@ -92,7 +92,7 @@ will be docker containers.
 Differently from the native setup, the docker based one do not come with [Nginx](https://nginx.org/en/docs/beginners_guide.html)
 and [ufw](https://help.ubuntu.com/community/UFW) and will have to be managed separately after the deployment in a production
 environment. To manage individual containers in the platform, you need to have the
-[docker-compose.yaml](https://github.com/faical-yannick-congo/corr-deploy/blob/master/docker/docker-compose.yaml) file and execute the following commands within its containing folder:
+[docker-compose.yaml](https://github.com/usnistgov/corr-deploy/blob/master/docker/docker-compose.yaml) file and execute the following commands within its containing folder:
 
     $ sudo docker-compose (run -d)/stop db
     $ sudo docker-compose (run -d)/stop api
@@ -103,10 +103,10 @@ The whole platform can be managed with the following command:
 
     $ sudo docker-compose up/down
 
-To learn the specifics please refer to the [Docker README](https://github.com/faical-yannick-congo/corr-deploy/blob/master/docker/README.md)
+To learn the specifics please refer to the [Docker README](https://github.com/usnistgov/corr-deploy/blob/master/docker/README.md)
 
 ## Setup an instance
 
-After installing CoRR either as native Linux services or as Docker containers, a [Setup](https://github.com/faical-yannick-congo/corr-deploy/blob/master/setup/README.md) step is required before launching the instance. Please open this file
+After installing CoRR either as native Linux services or as Docker containers, a [Setup](https://github.com/usnistgov/corr-deploy/blob/master/setup/README.md) step is required before launching the instance. Please open this file
 to follow the procedure to follow for the selected type of deployment. Without the proper setup,
 the CoRR launch will most likely fail.

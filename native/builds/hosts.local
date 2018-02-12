@@ -52,7 +52,7 @@ frontend
 mode=https
 
 storage_type=filesystem
-storage_location=/home/fyc/
+storage_location=/path/to/
 storage_name=corr-storage
 storage_key_id=
 storage_access_key=
@@ -76,9 +76,9 @@ env_type=development
 ansible_ssh_private_key_file=
 ansible_connection=local
 ansible_ssh_user=fyc
-corr_location=/home/fyc/corr-src
-ssl_certif=/corr-ssl/corr.crt
-ssl_key=/corr-ssl/corr.key
+corr_location=/path/to/corr-src
+ssl_certif=/path/to/corr-ssl/corr.crt
+ssl_key=/path/to/corr-ssl/corr.key
 
 # Instance custom fields
 platform_name=NIST Demo Instance

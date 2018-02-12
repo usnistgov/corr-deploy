@@ -15,7 +15,7 @@ services:
      # Ubuntu
      # - /var/lib/mongodb:/data/db
      # MacOSX
-     - /Users/fyc/vbox/data:/data
+     - /path/to/data:/data
   # CoRR API service container.
   corrapi:
     build:
@@ -28,7 +28,7 @@ services:
      # Ubuntu
      # - /corr-storage:/home/corradmin/corr-storage
      # MacOSX
-     - /Users/fyc/vbox/corr-storage:/home/corradmin/corr-storage
+     - /path/to/corr-storage:/home/corradmin/corr-storage
     depends_on:
      - "corrdb"
   # CoRR Cloud service container.
@@ -44,8 +44,8 @@ services:
      # Ubuntu
      # - /corr-storage:/home/corradmin/corr-storage
      # MacOSX
-     - /Users/fyc/vbox/corr-storage:/home/corradmin/corr-storage
-     - /Users/fyc/vbox/tmp:/tmp
+     - /path/to/corr-storage:/home/corradmin/corr-storage
+     - /path/to/tmp:/tmp
     expose:
      - "5200"
     depends_on:

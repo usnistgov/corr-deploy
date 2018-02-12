@@ -84,10 +84,10 @@ ansible_connection=local
 ansible_ssh_user=fyc
 docker_user=corradmin
 docker_hub=palingwende
-images_prefix=vbox
-corr_location=/corr-src-0.1
-ssl_certif=/corr-ssl/corr.crt
-ssl_key=/corr-ssl/corr.key
+images_prefix=native
+corr_location=/path/to/corr-src-0.1
+ssl_certif=/path/to/corr-ssl/corr.crt
+ssl_key=/path/to/corr-ssl/corr.key
 
 # Instance custom fields
 platform_name=NIST Demo Instance
