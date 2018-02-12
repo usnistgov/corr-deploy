@@ -14,7 +14,7 @@ This management setup is most effective for Linux systems that support
 ansible. The remote and host environment have to both be Linux based.
 
 # Native Linux Installation
-The deployment setup is run by executing a bash script: [config.bash](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/config.bash).
+The deployment setup is run by executing a bash script: [config.bash](https://github.com/usnistgov/corr-deploy/blob/master/native/config.bash).
 Before starting the installation, you should have a environment ready to avoid issues with your
 root system environment. Install anaconda if not already done.
 In this setup, the scripts will expected the environment corr-local. To create this environment:
@@ -23,14 +23,14 @@ In this setup, the scripts will expected the environment corr-local. To create t
 
 The installation requires sudo priviledges as following:
 
-    $ sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags install --inventory-file builds/hosts.local
 
-The hosts.local file contains the general configuration variables.
+Also the hosts.local file contains the general configuration variables.
 Before running the installation script, you should update variables in this file.
 The storage_location variable specifies where the corr-storage folder should be placed.
 
 The installation folder that contains the corr storage folder (corr-storage).
-The corr-storage folders have to be moved to the provided specific location.
+The filesystem based corr-storage folders have to be moved to the provided specific location.
 We recommand moving it to the root path to have /corr-storage on the api and cloud
 components' instance.
 The installation setup also allows specific components installations:
@@ -51,11 +51,11 @@ as sftp will be prefered over the current capability.
 For development in native mode, you may follow the steps below.
 Start the dabatase:
 
-    	$ sudo service mongodb start
+	$ sudo service mongodb start
 
 Run the api component:
 
-    	$ cd corr-api
+	$ cd corr-api
 	$ python run.py
 
 Run the cloud component:
@@ -68,7 +68,7 @@ Run the frontend component:
 	$ cd ../corr-view/frontend
 	$ jekyll serve --watch --port 5000 --host 0.0.0.0
 
-The current [hosts.local](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/builds/hosts.local) file contains the development configuration for the platform to
+The current [hosts.local](https://github.com/usnistgov/corr-deploy/blob/master/native/builds/hosts.local) file contains the development configuration for the platform to
 be installed and deployed locally.
 
 ## Native Linux Production
@@ -84,7 +84,7 @@ parameter:
 	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file builds/hosts.local
 	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file builds/hosts.local
 
-For remote production deployment and installation, a modified version of the [hosts.local](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/builds/hosts.local) file
+For remote production deployment and installation, a modified version of the [hosts.local](https://github.com/usnistgov/corr-deploy/blob/master/native/builds/hosts.local) file
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
 Also the ssh key and user should be updated.
 
