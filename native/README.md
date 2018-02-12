@@ -14,7 +14,7 @@ This management setup is most effective for Linux systems that support
 ansible. The remote and host environment have to both be Linux based.
 
 # Native Linux Installation
-The deployment setup is run by executing a bash script: [config.bash](config.bash).
+The deployment setup is run by executing a bash script: [config.bash](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/config.bash).
 Before starting the installation, you should have a environment ready to avoid issues with your
 root system environment. Install anaconda if not already done.
 In this setup, the scripts will expected the environment corr-local. To create this environment:
@@ -42,7 +42,7 @@ The installation setup also allows specific components installations:
 
 # Native Linux Deployment
 In case of the platform deployed with the file system as a storage medium, There is a requirement that
-constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both 
+constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both
 component have to access the storage. Running them separately will result on inconsistencies. Further
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
 as sftp will be prefered over the current capability.
@@ -68,7 +68,7 @@ Run the frontend component:
 	$ cd ../corr-view/frontend
 	$ jekyll serve --watch --port 5000 --host 0.0.0.0
 
-The current [hosts.local](builds/hosts.local) file contains the development configuration for the platform to
+The current [hosts.local](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/builds/hosts.local) file contains the development configuration for the platform to
 be installed and deployed locally.
 
 ## Native Linux Production
@@ -80,16 +80,16 @@ There is also the possibility to deploy each component separately by using the -
 parameter:
 
 	$ sudo ./config.bash --ask-sudo --tags serve --limit db --inventory-file builds/hosts.local
-	$ sudo ./aconfig.bash --ask-sudo --tags serve --limit api --inventory-file builds/hosts.local
+	$ sudo ./config.bash --ask-sudo --tags serve --limit api --inventory-file builds/hosts.local
 	$ sudo ./config.bash --ask-sudo --tags serve --limit cloud --inventory-file builds/hosts.local
 	$ sudo ./config.bash --ask-sudo --tags serve --limit frontend --inventory-file builds/hosts.local
 
-For remote production deployment and installation, a modified version of the [hosts.local](builds/hosts.local) file
+For remote production deployment and installation, a modified version of the [hosts.local](https://github.com/faical-yannick-congo/corr-deploy/blob/master/native/builds/hosts.local) file
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
 Also the ssh key and user should be updated.
 
 ## Native Linux Debugging
-In the case of development, you will be able to have direct logs from the components executions. For 
+In the case of development, you will be able to have direct logs from the components executions. For
 the production version on the other end, all component are system services. As such they all produce
 logs stored in /var/log. You will find: mongodb, corrapi, corrcloud. corrfrontend does not currently
 persist logs.

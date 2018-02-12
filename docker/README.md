@@ -15,7 +15,7 @@ ansible and docker. Neither the remote nor the host environment have
 to be Linux based.
 
 # Docker Based Installation
-The deployment setup is run by executing a bash script: [ansible-docker.bash](ansible-docker.bash).
+The deployment setup is run by executing a bash script: [ansible-docker.bash](https://github.com/faical-yannick-congo/corr-deploy/blob/master/docker/ansible-docker.bash).
 Before starting the installation, you should have a environment ready to avoid issues with your
 root system environment. Install anaconda if not already done.
 In this setup, the scripts will expected the environment corr-local. To create this environment:
@@ -41,7 +41,7 @@ the aws config folder (aws), the database storage folder (data), the corr storag
 The data and corr-storage folders have to be moved to a specific location on the host machine.
 We recommand moving it to the root path to have /data and /corr-storage.
 On non linux platforms these folders have to be shared through Docker.
-For example on Mac OSX: [sharing-folders-docker.jpeg](sharing-folders-docker.jpeg).
+For example on Mac OSX: [sharing-folders-docker.jpeg](https://github.com/faical-yannick-congo/corr-deploy/blob/master/docker/sharing-folders-docker.jpeg).
 During the installation process ansible will ssh into the hosts and produce the appropriate
 builds content for the right platform component location (specified in the hosts.docker).
 The installation setup also allows specific components installations. For example in a native build use case:
@@ -74,11 +74,11 @@ work has to be done to have a secured ftp access to the storage which will make 
 as sftp will be prefered over the current capability.
 
 ## Docker Based Development
-The current [hosts.docker](hosts.docker) file contains the development configuration for the platform to
+The current [hosts.docker](https://github.com/faical-yannick-congo/corr-deploy/blob/master/docker/hosts.docker) file contains the development configuration for the platform to
 be installed and deployed locally.
 
 ## Docker Based Production
-For production deployment and installation, a modified version of the [hosts.docker](hosts.docker) file
+For production deployment and installation, a modified version of the [hosts.docker](https://github.com/faical-yannick-congo/corr-deploy/blob/master/docker/hosts.docker) file
 has to be provided. The components (corrdb, corrapi, corrcloud, corrfrontend) hosts have to be provided.
 Also the ssh key and user should be updated.
 
