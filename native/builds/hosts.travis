@@ -22,9 +22,6 @@ mode=http
 cloudhost ansible_ssh_host=localhost
 
 [cloud:vars]
-stormpath_id=4ZH7A041SC938W0DK25JX3CIA
-stormpath_secret=ZA6Fan22PeP+pKtEZfilXJsXjZkUWrw8u7WeIBhTVgY
-stormpath_app=corr-dev
 mapped_port=5200
 test_path=http://0.0.0.0:5200/cloud/v0.1/public/user/home
 app_service_name=corrcloud
@@ -55,11 +52,9 @@ storage_location=/
 storage_name=corr-storage
 storage_key_id=
 storage_access_key=
+
 access_type=mongodb
-s3_region=us-west-2=
-s3_access_key_id=
-s3_secret_access_key=
-s3_bucket=None
+
 corr_env=corr-local
 corr_version=cleanup-0.1
 corr_repo=faical-yannick-congo/corr
@@ -70,3 +65,9 @@ ansible_ssh_private_key_file=
 ansible_connection=local
 ansible_ssh_user=travis
 corr_location=/corr-src
+
+platform_name=NIST Demo Instance
+
+platform_warning=This is a (<u>Agency</u>) computer system. (<u>Agency</u>) computer systems are provided for the processing of Official U.S. Government information only. All data contained on (Agency) computer systems is owned by the (<u>Agency</u>) may be monitored, intercepted, recorded, read, copied, or captured in any manner and disclosed in any manner, by authorized personnel. THERE IS NO RIGHT OF PRIVACY IN THIS SYSTEM. System personnel may give to law enforcement officials any potential evidence of crime found on (<u>Agency</u>) computer systems. USE OF <u>THIS SYSTEM BY ANY USER, AUTHORIZED OR UNAUTHORIZED, CONSTITUTES CONSENT TO THIS MONITORING, INTERCEPTION, RECORDING, READING, COPYING, OR CAPTURING and DISCLOSURE.</u>
+
+platform_terms=The National Institute of Standards and Technology has deployed a demo instance of corr as part of an effort to push for more reproducibility, provenance tracking and disseminate reproducible across a community of researchers, with the goal of enhancing the long term preservation and reusability of computational executions.<br/><br/>Data present on this system are varied and may originate from within NIST or from the worldwide community of researchers. Data present on this system may or may not be critically reviewed.<br/><br/>NIST provides this data as a public service and assumes no liability whatsoever for use of the data. NIST provides the data “AS IS” and makes NO WARRANTY OF ANY TYPE, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION NO WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR USE, AND NO WARRANTY OF NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY RIGHTS.<br/><br/>As an account holder on the corr.nist.gov I understand that my actions and data on the system are subject to the following terms of use:<br/>1.The CoRR demo instance is a United States Government resource, and will only be used in support of the sharing and dissemination of scientific records.<br/>2.Data uploaded to this system are presented to users in the as-provided condition. NIST makes no claims about the utility, veracity, or reliability of data on this system.<br/>3.Content uploaded to this server will be available to the general public.<br/>4.If the CoRR community administrator determines that content uploaded to this server does not contribute to the scientific computation reproducibility, provenance tracking and dissemination which is the purpose of this server, the content may be removed without notice.<br/>5.While every effort is made to ensure the integrity of data deposited on the CoRR demo instance, the NIST does not guarantee data integrity on this system.<br/>6.Accounts are assigned to single users. Account holders may not share account credentials with others, or allow others to access their sessions, except system operators, who may require such access for maintenance purposes.<br/>7.A user who has submitting or administrative rights to the system and who abuses their authority, or has some change in status that disqualifies them for the role, can have their submitter or administrative rights revoked by NIST management.<br/>8.NIST may monitor system activities or view data uploaded to the server, and may disclose these activities or data for any lawful Government purpose.<br/>9.NIST remains committed to the operation of public data repositories. NIST may discontinue this service at any time in favor of superior options. Any anticipated discontinuation of service will be announced in advance.<br/>

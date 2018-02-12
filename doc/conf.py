@@ -106,9 +106,9 @@ html_theme_options = {
     'navbar_title': "*",
     'navbar_site_name': "More",
     'navbar_links': [
-        ("Setup", "rst/setup/README.html", True),
         ("Native", "rst/native/README.html", True),
         ("Docker", "rst/docker/README.html", True),
+        ("Setup", "rst/setup/README.html", True),
         ("Github", "https://github.com/usnistgov/corr-deploy/", True),
     ],
     'navbar_pagenav': False,
@@ -297,16 +297,17 @@ import shutil, os, glob
 rst_directory = 'rst'
 native_directory = 'rst/native'
 docker_directory = 'rst/docker'
+setup_directory = 'rst/setup'
 
-for directory in [rst_directory, native_directory, docker_directory]:
+for directory in [rst_directory, native_directory, docker_directory, setup_directory]:
     if not os.path.exists(directory):
         os.makedirs(directory)
 
 files_to_copy = (
     'README.md',
-    'setup/README.md',
     'native/README.md',
     'docker/README.md',
+    'setup/README.md',
     'LICENSE'
 )
 

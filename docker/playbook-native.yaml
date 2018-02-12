@@ -43,11 +43,6 @@
       when: inventory_hostname in groups['cloud']
       template: src={{ inventory_dir }}/Dockerfile-cloud.j2 dest={{ inventory_dir }}/builds/Dockerfile-cloud
 
-    - name: copy stormpath config file
-      when: inventory_hostname in groups['cloud']
-      template: src={{ inventory_dir }}/apiKey.properties.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/apiKey.properties
-      tags: [install]
-
     - name: copy admin generation template
       when: inventory_hostname in groups['cloud']
       template: src={{ inventory_dir }}/tmp_admin.json.j2 dest={{ inventory_dir }}/builds/tmp_admin.json
@@ -78,7 +73,7 @@
       tags: [install]
       when: inventory_hostname in groups['frontend']
       template: src={{ inventory_dir }}/custom.json.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/xml/custom.json
-    
+
     - name: copy requirements.
       tags: [install]
       shell: cp requirements.yaml builds

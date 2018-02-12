@@ -1,8 +1,8 @@
 ## Dockerfile to create devel version of CoRR Frontend
-
 FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND noninteractive
 
+## Setting up the environment.
 RUN apt-get -y update
 RUN apt-get install -y sudo
 RUN apt-get install -y apt-utils
@@ -12,39 +12,35 @@ RUN apt-get -y update
 RUN apt-get install -y git
 RUN apt-get install -y wget
 RUN apt-get update
-RUN apt-get install -y ruby ruby-dev make gcc nodejs
+RUN apt-get install -y ruby ruby-dev libffi-dev libxml2-dev libyaml-dev zlib1g-dev make gcc nodejs
 RUN gem install jekyll --no-rdoc --no-ri
 
 ## Create a user with no sudo password.
-
 RUN useradd -m {{ docker_user }}
 RUN passwd -d {{ docker_user }}
 RUN adduser {{ docker_user }} sudo
 RUN echo '{{ docker_user }} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 USER {{ docker_user }}
 WORKDIR {{ local_path }}
 
+## Setting up the environment.
 COPY requirements.yaml {{ local_path }}/requirements.yaml
 COPY corr {{ local_path }}/corr
-
 RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/corr -R
-
 RUN sudo chown {{ docker_user }}:{{ docker_user }} {{ local_path }}/requirements.yaml
-
 RUN wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
 RUN bash Miniconda-latest-Linux-x86_64.sh -b -p {{ anaconda_path }}
 RUN echo 'export PATH="{{ local_path }}/anaconda/bin:$PATH"'>> {{ local_path }}/.bashrc
 RUN {{ conda }} update -y conda
 RUN {{ conda }} create -y -n {{ corr_env }} python=3.4
 RUN {{ conda }} env update -n {{ corr_env }} --file {{ local_path }}/requirements.yaml
-
 {{ "RUN apt-get install -y clamav-daemon" if mode == "https" else "" }}
 {{ "RUN apt-get install -y clamav-freshclam" if mode == "https" else "" }}
 {{ "RUN apt-get install -y clamav-unofficial-sigs" if mode == "https" else "" }}
-
 WORKDIR {{ local_path }}/corr/corr-view/frontend
 
+## Configuring the container access.
 EXPOSE {{ mapped_port }}
 
+## Executing the services.
 CMD {{ "freshclam; service clamav-daemon start; " if mode == "https" else "" }}source activate corr; sudo jekyll serve --watch --port {{hostvars['frontendhost']['mapped_port']}} --host {{ hostvars['frontendhost']['ansible_ssh_host'] }}

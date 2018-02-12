@@ -1,5 +1,6 @@
 version: '2'
 services:
+  # CoRR MongoDB database container.
   corrdb:
     build:
         context: ./builds
@@ -9,10 +10,13 @@ services:
     expose:
      - "27017"
     volumes:
+     # Location of the Mongodb database folder.
+     # Make sure a db folder is in it.
      # Ubuntu
      # - /var/lib/mongodb:/data/db
      # MacOSX
-     - /data/db:/data/db
+     - /Users/fyc/vbox/data:/data
+  # CoRR API service container.
   corrapi:
     build:
         context: ./builds
@@ -20,12 +24,14 @@ services:
     ports:
      - "5100:5100"
     volumes:
+     # Location of the file system storage.
      # Ubuntu
-     # - /home/fyc/corr-storage:/home/corradmin/corr-storage
+     # - /corr-storage:/home/corradmin/corr-storage
      # MacOSX
-     - /corr-storage:/home/corradmin/corr-storage
+     - /Users/fyc/vbox/corr-storage:/home/corradmin/corr-storage
     depends_on:
      - "corrdb"
+  # CoRR Cloud service container.
   corrcloud:
     build:
         context: ./builds
@@ -33,14 +39,18 @@ services:
     ports:
      - "5200:5200"
     volumes:
+     # Locations of the file system storage
+     # and the admin configuration file folder: /tmp/tmp_admin.json
      # Ubuntu
-     # - /home/fyc/corr-storage:/home/corradmin/corr-storage
+     # - /corr-storage:/home/corradmin/corr-storage
      # MacOSX
-     - /corr-storage:/home/corradmin/corr-storage
+     - /Users/fyc/vbox/corr-storage:/home/corradmin/corr-storage
+     - /Users/fyc/vbox/tmp:/tmp
     expose:
      - "5200"
     depends_on:
      - "corrdb"
+  # CoRR Frontend service container.
   corrview:
     build:
         context: ./builds

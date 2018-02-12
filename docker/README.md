@@ -22,9 +22,16 @@ In this setup, the scripts will expected the environment corr-local. To create t
 
 	$ conda create -n corr-local python=3.4 anaconda
 
-The installation requires sudo priviledges as following:
+The installation requires sudo priviledges and due to networking constraints when building docker containers for native use or vbox based use, we provide two playbooks.
+The build is done as following for native use:
 
-    $ sudo ./ansible-docker.bash --ask-sudo --tags install --inventory-file hosts.docker
+    $ sudo ./ansible-docker.bash playbook-native.yaml --ask-sudo --tags install --inventory-file hosts.docker
+
+The build is done as following for vbox use:
+
+    $ sudo ./ansible-docker.bash playbook-vbox.yaml --ask-sudo --tags install --inventory-file hosts.docker
+
+The networking fields in folders virtualbox and native display the constraints. In fact, when using docker in Kitematic, the IP addresses are set for 192.168.99.100. Which is what we use for the vbox build. For native build, the developer has the freedom to chose whatever IP.
 
 The hosts.docker file contains the general configuration variables.
 The installation step produces a builds folder that contains the corr source code (corr),
@@ -37,31 +44,31 @@ On non linux platforms these folders have to be shared through Docker.
 For example on Mac OSX: [sharing-folders-docker.jpeg](sharing-folders-docker.jpeg).
 During the installation process ansible will ssh into the hosts and produce the appropriate
 builds content for the right platform component location (specified in the hosts.docker).
-The installation setup also allows specific components installations:
+The installation setup also allows specific components installations. For example in a native build use case:
 
-	$ sudo ./ansible-docker.bash --ask-sudo --tags install --limit corrdb --inventory-file hosts.docker
-	$ sudo ./ansible-docker.bash --ask-sudo --tags install --limit corrapi --inventory-file hosts.docker
-	$ sudo ./ansible-docker.bash --ask-sudo --tags install --limit corrcloud --inventory-file hosts.docker
-	$ sudo ./ansible-docker.bash --ask-sudo --tags install --limit corrfrontend --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash playbook-native.yaml --ask-sudo --tags install --limit db --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash playbook-native.yaml --ask-sudo --tags install --limit api --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash playbook-native.yaml --ask-sudo --tags install --limit cloud --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash playbook-native.yaml --ask-sudo --tags install --limit frontend --inventory-file hosts.docker
 
 # Docker Based Deployment
 On the advent of the data and corr-storage not being moved to the root path.
 The exact path have to be overwritten in the docker-compose.yaml file in the volumes
 section for corrdb, corrapi and corrcloud.
-The platform can be deployed through the following command:
+The platform (native build) can be deployed through the following command:
 
-	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash   playbook-native.yaml --ask-sudo --tags serve --inventory-file hosts.docker
 
-There is also the possibility to deploy each component separately by using the --limit
+There is also the possibility to deploy each component (native docker) separately by using the --limit
 parameter:
 
-	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --limit corrdb --inventory-file hosts.docker
-	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --limit corrapi --inventory-file hosts.docker
-	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --limit corrcloud --inventory-file hosts.docker
-	$ sudo ./ansible-docker.bash --ask-sudo --tags serve --limit corrfrontend --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash  playbook-native.yaml --ask-sudo --tags serve --limit db --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash  playbook-native.yaml --ask-sudo --tags serve --limit api --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash  playbook-native.yaml --ask-sudo --tags serve --limit cloud --inventory-file hosts.docker
+	$ sudo ./ansible-docker.bash  playbook-native.yaml --ask-sudo --tags serve --limit frontend --inventory-file hosts.docker
 
 In case of the platform deployed with the file system as a storage medium, There is a requirement that
-constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both 
+constraint corrapi and corrcloud to be deployed on the same host. This is due to the fact that both
 component have to access the storage. Running them separately will result on inconsistencies. Further
 work has to be done to have a secured ftp access to the storage which will make this remark obsolete
 as sftp will be prefered over the current capability.

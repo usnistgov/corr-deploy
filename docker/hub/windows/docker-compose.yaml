@@ -7,13 +7,13 @@ services:
     expose:
      - "27017"
     volumes:
-     - c:/data/db:/data/db
+     - c:/path/to/data:/data
   corrapi:
     image: palingwende/native_corrapi
     ports:
      - "5100:5100"
     volumes:
-     - c:/Users/fyc/corr-storage:/home/corradmin/corr-storage
+     - c:/path/to/corr-storage:/home/corradmin/corr-storage
     depends_on:
      - "corrdb"
   corrcloud:
@@ -21,7 +21,8 @@ services:
     ports:
      - "5200:5200"
     volumes:
-     - c:/Users/fyc/corr-storage:/home/corradmin/corr-storage
+     - c:/path/to/corr-storage:/home/corradmin/corr-storage
+     - c:/path/to/tmp:/tmp
     expose:
      - "5200"
     depends_on:

@@ -87,11 +87,6 @@
       template: src={{ inventory_dir }}/admin_generation.py.j2 dest={{ corr_path }}/corr-cloud/cloud/views/admin_generation.py
       tags: [install]
 
-    - name: copy stormpath config file
-      when: inventory_hostname in groups['cloud']
-      template: src={{ inventory_dir }}/apiKey.properties.j2 dest={{ corr_path }}/corr-cloud/apiKey.properties
-      tags: [install]
-
     - name: create ~/s3 directory
       tags: [install]
       when: >
