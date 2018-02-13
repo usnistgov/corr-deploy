@@ -89,3 +89,15 @@ Each component in the platform containers produce a log accessible through docke
 	$ sudo docker-compose logs corrapi
 	$ sudo docker-compose logs corrcloud
 	$ sudo docker-compose logs corrview
+
+## Docker Hub deployment
+CoRR can be pulled, configured and launched with the hub folder content. We provide three suported groups of OS: Linux, OSX and Windows. We recommend the instance administrator to first unzip the compressed folders in setup and follow the setup page. Inside tmp, change the admin email, password, first name and last name. Then provide the path to the location of the unziped folders: data, corr-storage and tmp. Note: Create a db folder inside data.
+At this point, the admin can pull the images:
+
+  $ sudo docker-compose pull
+
+After the containers are pulled, the admin must take a look at the docker-compose file to verify that the exposed ports are available on the system. Moreover, the admin can change them by following the docker port mapping documentations. When done, it is time to launch the instance:
+
+  $ sudo docker-compose up -d
+
+At this point, the admin can follow anything provided before such as debugging each container, stop them and launching them individually.
