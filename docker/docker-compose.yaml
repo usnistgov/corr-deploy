@@ -29,6 +29,7 @@ services:
      # - /corr-storage:/home/corradmin/corr-storage
      # MacOSX
      - /path/to/corr-storage:/home/corradmin/corr-storage
+     - /path/to/corr-configs/api:/home/corradmin/corr/corr-api/config
     depends_on:
      - "corrdb"
   # CoRR Cloud service container.
@@ -46,6 +47,7 @@ services:
      # MacOSX
      - /path/to/corr-storage:/home/corradmin/corr-storage
      - /path/to/tmp:/tmp
+     - /path/to/corr-configs/cloud:/home/corradmin/corr/corr-cloud/config
     expose:
      - "5200"
     depends_on:
@@ -57,5 +59,7 @@ services:
         dockerfile: Dockerfile-frontend
     ports:
      - "5000:5000"
+    volumes:
+      - /path/to/corr-configs/view:/home/corradmin/corr/corr-view/frontend/js/config
     depends_on:
      - "corrcloud"

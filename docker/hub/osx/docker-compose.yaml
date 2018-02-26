@@ -14,6 +14,7 @@ services:
      - "5100:5100"
     volumes:
      - /path/to/corr-storage:/home/corradmin/corr-storage
+     - /path/to/corr-configs/api:/home/corradmin/corr/corr-api/config
     depends_on:
      - "corrdb"
   corrcloud:
@@ -22,6 +23,7 @@ services:
      - "5200:5200"
     volumes:
      - /path/to/corr-storage:/home/corradmin/corr-storage
+     - /path/to/corr-configs/cloud:/home/corradmin/corr/corr-cloud/config
      - /path/to/tmp:/tmp
     expose:
      - "5200"
@@ -31,5 +33,7 @@ services:
     image: palingwende/native_corrview
     ports:
      - "5000:5000"
+    volumes:
+      - /path/to/corr-configs/view:/home/corradmin/corr/corr-view/frontend/js/config
     depends_on:
      - "corrcloud"
