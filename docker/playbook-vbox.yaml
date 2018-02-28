@@ -33,10 +33,15 @@
       when: inventory_hostname in groups['api']
       template: src={{ inventory_dir }}/Dockerfile-api.j2 dest={{ inventory_dir }}/builds/Dockerfile-api
 
-    - name: copy api config file
+    - name: create api config folder directory
       tags: [install]
       when: inventory_hostname in groups['api']
-      template: src={{ inventory_dir }}/virtualbox/config-api.py.j2 dest={{ inventory_dir }}/builds/corr/corr-api/config.py
+      file: path={{ inventory_dir }}/builds/corr/corr-api/config state=directory
+
+    - name: copy api default config file
+      tags: [install]
+      when: inventory_hostname in groups['api']
+      template: src={{ inventory_dir }}/virtualbox/config-api.py.j2 dest={{ inventory_dir }}/builds/corr/corr-api/config/default.py
 
     - name: generate Dockerfile-cloud file.
       tags: [install]
@@ -53,9 +58,14 @@
       template: src={{ inventory_dir }}/admin_generation.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/cloud/views/admin_generation.py
       tags: [install]
 
-    - name: copy cloud config file
+    - name: create cloud config folder directory
+      tags: [install]
       when: inventory_hostname in groups['cloud']
-      template: src={{ inventory_dir }}/virtualbox/config-cloud.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/config.py
+      file: path={{ inventory_dir }}/builds/corr/corr-cloud/config state=directory
+
+    - name: copy cloud default config file
+      when: inventory_hostname in groups['cloud']
+      template: src={{ inventory_dir }}/virtualbox/config-cloud.py.j2 dest={{ inventory_dir }}/builds/corr/corr-cloud/config/default.py
       tags: [install]
 
     - name: generate Dockerfile-frontend file.
@@ -64,10 +74,15 @@
       template: src={{ inventory_dir }}/Dockerfile-frontend.j2 dest={{ inventory_dir }}/builds/Dockerfile-frontend
       become: true
 
-    - name: copy frontend config file
+    - name: create frontend config folder directory
       tags: [install]
       when: inventory_hostname in groups['frontend']
-      template: src={{ inventory_dir }}/virtualbox/config-frontend.js.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config.js
+      file: path={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config state=directory
+
+    - name: copy frontend default config file
+      tags: [install]
+      when: inventory_hostname in groups['frontend']
+      template: src={{ inventory_dir }}/virtualbox/config-frontend.js.j2 dest={{ inventory_dir }}/builds/corr/corr-view/frontend/js/config/default.js
 
     - name: copy frontend custom file
       tags: [install]
