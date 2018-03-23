@@ -5,3 +5,4 @@ data
 corr-storage
 corr-public-hosts.aws
 .DS_Store
+__pycache__

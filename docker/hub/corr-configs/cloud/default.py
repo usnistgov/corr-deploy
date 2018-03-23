@@ -9,7 +9,7 @@ FLASK_ENV = 'development'
 # Warning: Make sure the docker-compose port matches.
 MONGODB_SETTINGS = {
     'db': 'corr-integrate',
-    'host': '172.27.0.1',
+    'host': 'corrdb',
     'port': 27017,
 }
 
