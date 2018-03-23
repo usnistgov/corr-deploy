@@ -8,7 +8,7 @@ services:
     expose:
      - "27019"
     volumes:
-     - /Users/fyc/CoRR-Test/data:/data
+     - /path/to/data:/data
   corrapi:
     image: palingwende/native_corrapi
     ports:
