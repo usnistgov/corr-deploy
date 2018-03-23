@@ -2,10 +2,11 @@ version: '2'
 services:
   corrdb:
     image: palingwende/native_corrdb
+    container_name: corrdb
     ports:
-     - "27017:27017"
+     - "27019:27017"
     expose:
-     - "27017"
+     - "27019"
     volumes:
      - /path/to/data:/data
   corrapi:
@@ -16,6 +17,8 @@ services:
      - /path/to/corr-storage:/home/corradmin/corr-storage
      - /path/to/corr-configs/api:/home/corradmin/corr/corr-api/config
     depends_on:
+     - "corrdb"
+    links:
      - "corrdb"
   corrcloud:
     image: palingwende/native_corrcloud
@@ -28,6 +31,8 @@ services:
     expose:
      - "5200"
     depends_on:
+     - "corrdb"
+    links:
      - "corrdb"
   corrview:
     image: palingwende/native_corrview
